@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">汉语时</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_signup">申请入驻</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_main">汉语时</string>
+    <string name="title_activity_guide">引导</string>
+
+    <string name="tab_home">首页</string>
+    <string name="tab_recently">最近</string>
+    <string name="tab_me">我</string>
+
+    <string name="Signup">申请入驻</string>
+    <string name="Login">登录</string>
+    <string name="yuan">元</string>
+    <string name="mins">分钟</string>
+    <string name="hours">小时</string>
+
+    <string name="params_error">参数错误</string>
+    <string name="Waiting">请稍等...</string>
+    <string name="Cancel">取消</string>
+    <string name="OK">确定</string>
+
+    <!--splash activity-->
+    <string name="video_service_login_failed">视频系统加载失败，请检查网络情况，并重新启动汉语时。</string>
+
+    <!--home fragment-->
+    <string name="offline_app_title">汉语时(已离线)</string>
+    <string name="be_online">我要上线</string>
+    <string name="be_offline">我要下线</string>
+    <string name="user_status_invalid">用户状态异常</string>
+
+    <!--me fragment-->
+    <string name="Logout">登出</string>
+    <string name="Version">版本</string>
+    <string name="Score">综合评分</string>
+    <string name="Served_Time">授课时长</string>
+    <string name="Closed_Commissions">已结佣金</string>
+    <string name="Outstanding_Commissions">未结佣金</string>
+    <string name="Email_Support">邮件客服</string>
+    <string name="dialog_logout_message">你确定要登出吗?</string>
+    <string name="referral_code">推荐码</string>
+    <string name="FAQ">FAQ</string>
+
+    <!--reservation fragment-->
+    <string name="no_record">你暂无任何陪练记录</string>
+
+    <!--service-->
+    <string name="notify_foregroundservice">汉语时视频服务</string>
+
+    <!--faq activity-->
+    <string name="title_activity_faq">FAQ</string>
+</resources>

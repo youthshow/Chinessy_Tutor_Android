@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.chinessy.android.fragment.HomeFragment">
+    
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="306dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:src="@mipmap/fireballoon_off"
+        android:id="@+id/home_iv_fireballoon"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/home_iv_fireballoon"
+        android:padding="16dp"
+        >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_long_main"
+            android:textColor="#fff"
+            android:text="@string/be_online"
+            android:textSize="@dimen/text_size_xl"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/home_btn_onoffline"
+            android:textAllCaps="false"
+            />
+    </LinearLayout>
+
+</RelativeLayout>
