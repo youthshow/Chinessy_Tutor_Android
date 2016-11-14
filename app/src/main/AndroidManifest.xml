@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chinessy.tutor.android" >
+    package="com.chinessy.tutor.android">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -41,26 +41,26 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- receiver -->
         <receiver
             android:name=".broadcastreceiver.SmsReceiver"
-            android:exported="true" >
-            <intent-filter android:priority="1000" >
+            android:exported="true">
+            <intent-filter android:priority="1000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".broadcastreceiver.BootCompletedReceiver"
-            android:exported="true" >
-            <intent-filter android:priority="1000" >
+            android:exported="true">
+            <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".broadcastreceiver.NetworkStatusReceiver"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
@@ -69,14 +69,13 @@
         </receiver>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateVisible" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,7 +84,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main">
 
             <!-- 在您要跳转的 Activity，加 intent-filter -->
             <intent-filter>
@@ -97,19 +96,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GuideActivity"
-            android:label="@string/title_activity_guide" >
-        </activity>
+            android:name=".activity.GuideActivity"
+            android:label="@string/title_activity_guide" />
 
         <service
             android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService" >
-        </service>
+            android:process=":DownloadingService" />
 
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- justalk -->
         <activity
@@ -117,8 +113,7 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
 
         <service android:name=".mipush.MtcService" />
 
@@ -137,7 +132,7 @@
         <!-- 注：此service必须在2.2.5版本以后（包括2.2.5版本）加入 -->
         <receiver
             android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
@@ -147,14 +142,14 @@
         <receiver
             android:name="com.xiaomi.push.service.receivers.PingReceiver"
             android:exported="false"
-            android:process=":pushservice" >
+            android:process=":pushservice">
             <intent-filter>
                 <action android:name="com.xiaomi.push.PING_TIMER" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".mipush.MiPushMessageReceiver"
-            android:exported="true" >
+            android:exported="true">
 
             <!-- 这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名 -->
             <intent-filter>
@@ -171,36 +166,34 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="563890dce0f55a49fa000ea7" />
-         <meta-data
-             android:name="UMENG_CHANNEL"
-             android:value="OFFICIAL_WEBSITE" />
-        <!--<meta-data-->
-            <!--android:name="UMENG_CHANNEL"-->
-            <!--android:value="GOOGLE_PLAY" />-->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="OFFICIAL_WEBSITE" />
+        <!-- <meta-data -->
+        <!-- android:name="UMENG_CHANNEL" -->
+        <!-- android:value="GOOGLE_PLAY" /> -->
 
         <activity
-            android:name=".SignupActivity"
-            android:label="@string/title_activity_signup" >
-        </activity>
+            android:name=".activity.SignupActivity"
+            android:label="@string/title_activity_signup" />
 
         <service
             android:name=".service.TutorService"
             android:enabled="true"
             android:exported="true"
-            android:persistent="true" >
-        </service>
+            android:persistent="true" />
         <service
             android:name="org.chinessy.tutor.android.service.IndependentTutorService"
             android:enabled="true"
             android:exported="true"
             android:persistent="true"
-            android:process="org.chinessy.tutor.android.service.IndependentTutorService" >
-        </service>
+            android:process="org.chinessy.tutor.android.service.IndependentTutorService" />
 
         <activity
-            android:name=".FAQActivity"
-            android:label="@string/title_activity_faq" >
-        </activity>
+            android:name=".activity.FAQActivity"
+            android:label="@string/title_activity_faq" />
+        <activity android:name=".activity.BindedStuListActivity" />
+        <activity android:name=".activity.AppointmentListActivity"></activity>
     </application>
 
 </manifest>

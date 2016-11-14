@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 
 import java.io.File;
 

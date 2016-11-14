@@ -11,7 +11,7 @@ import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.utils.DateUtil;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 

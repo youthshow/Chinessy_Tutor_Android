@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chinessy.tutor.android.Chinessy;
-import com.chinessy.tutor.android.FAQActivity;
-import com.chinessy.tutor.android.GuideActivity;
+import com.chinessy.tutor.android.activity.AppointmentListActivity;
+import com.chinessy.tutor.android.activity.BindedStuListActivity;
+import com.chinessy.tutor.android.activity.FAQActivity;
+import com.chinessy.tutor.android.activity.GuideActivity;
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
@@ -22,7 +25,7 @@ import com.chinessy.tutor.android.models.User;
 import com.rey.material.app.SimpleDialog;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,7 +55,10 @@ public class MyFragment extends Fragment {
     RelativeLayout mRlAbout;
     RelativeLayout mRlPersonalInfo;
     RelativeLayout mRlFAQ;
+    RelativeLayout mRlBindedStuList;
+    RelativeLayout mRlAppointmentList;
     Button mBtnLogout;
+    TextView mTvOnLiveTime;
     TextView mTvName;
     TextView mTvInfo;
     TextView mTvScore;
@@ -92,10 +98,30 @@ public class MyFragment extends Fragment {
 
     }
 
-    class EmailSupportOnClickListener implements View.OnClickListener{
+    class BindedStuListOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Intent intent=new Intent(Intent.ACTION_SEND);
+             mActivity.startActivity(new Intent(mActivity, BindedStuListActivity.class));
+        }
+    }
+
+    class AppointmentListOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(mActivity, "AppointmentListOnClickListener", Toast.LENGTH_SHORT).show();
+            //   startActivity(new Intent(mActivity, AppointmentListActivity.class));
+
+        }
+    }
+
+
+    class EmailSupportOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("plain/text");
 
             //调用系统发送邮件
@@ -103,16 +129,19 @@ public class MyFragment extends Fragment {
             intent.putExtra(Intent.EXTRA_SUBJECT, "I need help using Chinessy");
             intent.putExtra(Intent.EXTRA_TEXT, "User Name:" + Chinessy.chinessy.getUser().getUserProfile().getName());
             mActivity.startActivity(intent);
+
+
         }
     }
-    class AboutOnClickListener implements View.OnClickListener{
+
+    class AboutOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
 
         }
     }
 
-    class FAQOnClickListener implements View.OnClickListener{
+    class FAQOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
@@ -160,23 +189,29 @@ public class MyFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_me, container, false);
         mActivity = getActivity();
 
-        mRlEmailSupport = (RelativeLayout)rootView.findViewById(R.id.my_rl_emailsupport);
-        mRlAbout = (RelativeLayout)rootView.findViewById(R.id.my_rl_about);
-        mRlFAQ = (RelativeLayout)rootView.findViewById(R.id.my_rl_faq);
-        mTvName = (TextView)rootView.findViewById(R.id.my_tv_name);
-        mRlPersonalInfo = (RelativeLayout)rootView.findViewById(R.id.my_rl_personalinfo);
-        mTvInfo = (TextView)rootView.findViewById(R.id.my_tv_info);
-        mTvScore = (TextView)rootView.findViewById(R.id.my_tv_score);
-        mTvOutstandingCommissions = (TextView)rootView.findViewById(R.id.my_tv_outstandingcommissions);
-        mTvClosedCommissions = (TextView)rootView.findViewById(R.id.my_tv_closedcommissions);
-        mTvServedTime = (TextView)rootView.findViewById(R.id.my_tv_servedtime);
+        mRlEmailSupport = (RelativeLayout) rootView.findViewById(R.id.my_rl_emailsupport);
+        mRlAbout = (RelativeLayout) rootView.findViewById(R.id.my_rl_about);
+        mRlFAQ = (RelativeLayout) rootView.findViewById(R.id.my_rl_faq);
+        mTvName = (TextView) rootView.findViewById(R.id.my_tv_name);
+        mRlPersonalInfo = (RelativeLayout) rootView.findViewById(R.id.my_rl_personalinfo);
+        mTvInfo = (TextView) rootView.findViewById(R.id.my_tv_info);
+        mTvScore = (TextView) rootView.findViewById(R.id.my_tv_score);
+        mTvOutstandingCommissions = (TextView) rootView.findViewById(R.id.my_tv_outstandingcommissions);
+        mTvClosedCommissions = (TextView) rootView.findViewById(R.id.my_tv_closedcommissions);
+        mTvServedTime = (TextView) rootView.findViewById(R.id.my_tv_servedtime);
+        mRlBindedStuList = (RelativeLayout) rootView.findViewById(R.id.my_rl_binded_stu_list);
+        mRlAppointmentList = (RelativeLayout) rootView.findViewById(R.id.my_rl_appointment_list);
+        mTvOnLiveTime = (TextView) rootView.findViewById(R.id.my_tv_on_live_time);
 
+        mRlBindedStuList.setOnClickListener(new BindedStuListOnClickListener());
+        mRlAppointmentList.setOnClickListener(new AppointmentListOnClickListener());
         mRlEmailSupport.setOnClickListener(new EmailSupportOnClickListener());
         mRlAbout.setOnClickListener(new AboutOnClickListener());
         mRlFAQ.setOnClickListener(new FAQOnClickListener());
 
-        mBtnLogout = (Button)rootView.findViewById(R.id.my_btn_logout);
+        mBtnLogout = (Button) rootView.findViewById(R.id.my_btn_logout);
         mBtnLogout.setOnClickListener(new BtnLogoutClickListener());
+
 
         return rootView;
     }
@@ -220,7 +255,7 @@ public class MyFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    void refreshContent(){
+    void refreshContent() {
         String name = Chinessy.chinessy.getUser().getUserProfile().getName();
         name = name.equals("") ? Chinessy.chinessy.getUser().getEmail() : name;
         mTvName.setText(name);
@@ -233,15 +268,15 @@ public class MyFragment extends Fragment {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     try {
-                        switch (response.getInt("code")){
+                        switch (response.getInt("code")) {
                             case 10000:
                                 User user = Chinessy.chinessy.getUser();
                                 user.setServedMinutes(response);
                                 long totalMinutes = user.getPaiedMinutes() + user.getUnpaiedMinutes();
-                                mTvInfo.setText(getString(R.string.referral_code)+": " + user.getUserProfile().getReferralCode());
-                                int hours = (int)Math.floor(totalMinutes/60.0);
-                                int minutes = (int)totalMinutes%60;
-                                mTvServedTime.setText(hours+getString(R.string.hours)+minutes+getString(R.string.mins));
+                                mTvInfo.setText(getString(R.string.referral_code) + ": " + user.getUserProfile().getReferralCode());
+                                int hours = (int) Math.floor(totalMinutes / 60.0);
+                                int minutes = (int) totalMinutes % 60;
+                                mTvServedTime.setText(hours + getString(R.string.hours) + minutes + getString(R.string.mins));
                                 mTvOutstandingCommissions.setText(user.getOutstandingCommissions() + getString(R.string.yuan));
                                 mTvClosedCommissions.setText(user.getClosedCommissions() + getString(R.string.yuan));
                                 break;
@@ -265,6 +300,7 @@ public class MyFragment extends Fragment {
         MobclickAgent.onPageStart("MyFragment");
         refreshContent();
     }
+
     @Override
     public void onPause() {
         super.onPause();

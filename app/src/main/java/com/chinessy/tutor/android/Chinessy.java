@@ -9,8 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.JusTalkHandler;
@@ -18,16 +16,14 @@ import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.chinessy.tutor.android.service.TutorService;
 import com.chinessy.tutor.android.utils.ServiceUtil;
-import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.chinessy.tutor.android.service.IndependentTutorService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -62,9 +58,9 @@ public class Chinessy extends Application implements Application.ActivityLifecyc
         Chinessy.chinessy = this;
         registerActivityLifecycleCallbacks(this);
 
-        MobclickAgent.updateOnlineConfig(getApplicationContext());
+       // MobclickAgent.updateOnlineConfig(getApplicationContext());
         MobclickAgent.openActivityDurationTrack(false);
-        AnalyticsConfig.enableEncrypt(true);
+      //  AnalyticsConfig.enableEncrypt(true);
     }
 
     public void addActivity(Activity activity){

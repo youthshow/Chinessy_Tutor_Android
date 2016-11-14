@@ -17,11 +17,13 @@ public class Config {
     public static final String JUSTALK_CLOUD_SERVER_ADDRESS = "sudp:dev.ae.justalkcloud.com:9851";
 //    public static final String JUSTALK_CLOUD_SERVER_ADDRESS = "sudp:ae.justalkcloud.com:9851";
 
-    public static final String BASE_URL = "http://apidev.chinessy.com:9090/";
-//    public static final String BASE_URL = "http://api.chinessy.com:8090/";
+    //    端口9090的是测试服务器
+    //    8090是生产环境的端口
+    //   public static final String BASE_URL = "http://apidev.chinessy.com:9090/";
+    public static final String BASE_URL = "http://api.chinessy.com:8090/";
 
     public static final String MIPUSH_APP_ID = "2882303761517405953";
     public static final String MIPUSH_APP_KEY = "5381740525953";
 
-    public static final int NOTIFICATION_TUTOR_ONGOING = 1001;
+
 }

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
-    tools:context="com.chinessy.android.fragment.ReservationFragment"
+    tools:context="com.chinessy.tutor.android.fragment.ReservationFragment"
     android:paddingTop="1dp"
     >
 

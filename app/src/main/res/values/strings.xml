@@ -29,11 +29,15 @@
     <!--home fragment-->
     <string name="offline_app_title">汉语时(已离线)</string>
     <string name="be_online">我要上线</string>
+    <string name="be_onlive">我要直播</string>
     <string name="be_offline">我要下线</string>
     <string name="user_status_invalid">用户状态异常</string>
 
     <!--me fragment-->
     <string name="Logout">登出</string>
+    <string name="one2one_binded_stu_list">1对1绑定信息</string>
+    <string name="one2one_appointment_list">1对1预约信息</string>
+    <string name="on_live_time">直播时长</string>
     <string name="Version">版本</string>
     <string name="Score">综合评分</string>
     <string name="Served_Time">授课时长</string>
@@ -52,4 +56,9 @@
 
     <!--faq activity-->
     <string name="title_activity_faq">FAQ</string>
+
+
+
+    <string name="Student">学生</string>
+    <string name="Binding_Time">绑定时间(剩余)</string>
 </resources>

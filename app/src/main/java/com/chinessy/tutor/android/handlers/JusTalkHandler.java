@@ -19,7 +19,7 @@ import com.justalk.cloud.zmf.ZmfAudio;
 import com.justalk.cloud.zmf.ZmfVideo;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;

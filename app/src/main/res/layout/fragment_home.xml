@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chinessy.android.fragment.HomeFragment">
+    tools:context="com.chinessy.tutor.android.fragment.HomeFragment">
     
     <ImageView
         android:layout_width="225dp"
@@ -20,6 +20,18 @@
         android:layout_below="@id/home_iv_fireballoon"
         android:padding="16dp"
         >
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_long_main"
+            android:textColor="#fff"
+            android:text="@string/be_onlive"
+            android:textSize="@dimen/text_size_xl"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/home_btn_onlive"
+            android:textAllCaps="false"
+            />
 
         <Button
             android:layout_width="match_parent"

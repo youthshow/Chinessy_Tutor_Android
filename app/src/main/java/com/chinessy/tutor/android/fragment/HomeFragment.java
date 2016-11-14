@@ -1,8 +1,6 @@
 package com.chinessy.tutor.android.fragment;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,26 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.chinessy.tutor.android.Chinessy;
 import com.chinessy.tutor.android.MainActivity;
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.clients.InternalClient;
-import com.chinessy.tutor.android.handlers.JusTalkHandler;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
-import com.chinessy.tutor.android.models.UserBalancePackage;
-import com.chinessy.tutor.android.models.UserProfile;
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.rey.material.app.SimpleDialog;
 import com.umeng.analytics.MobclickAgent;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 
 /**
  * A simple {@link Fragment} subclass.

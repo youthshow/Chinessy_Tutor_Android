@@ -2,9 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.chinessy.android.fragment.MyFragment"
     android:orientation="vertical"
-    >
+    tools:context="com.chinessy.tutor.android.fragment.MyFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,46 +15,43 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/my_rl_personalinfo"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="@mipmap/me_bg"
-                android:id="@+id/my_rl_personalinfo">
+                android:background="@mipmap/me_bg">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="30dp"
-                    android:orientation="horizontal"
                     android:layout_centerVertical="true"
-                    >
+                    android:layout_margin="30dp"
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@mipmap/me_profilepic"
-                        />
+                        android:src="@mipmap/me_profilepic" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_marginLeft="25dp"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/my_tv_name"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:layout_margin="5dp"
-                            />
-                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/my_tv_info"
-                            android:textColor="@color/white"
                             android:layout_margin="5dp"
-                            />
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/my_tv_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="@color/white" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -70,150 +66,224 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
 
                     <RelativeLayout
+                        android:id="@+id/my_rl_binded_stu_list"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:padding="5dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/one2one_binded_stu_list"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/my_rl_appointment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/one2one_appointment_list"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
+                            android:id="@+id/my_tv_one2one_appointment_list"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/redspot" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/my_rl_on_live_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/on_live_time"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
+                            android:id="@+id/my_tv_on_live_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:text="0小时7分钟"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
                         android:id="@+id/my_rl_servedtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_marginBottom="1dp"
                         android:background="@drawable/btn_long_white"
-                        >
+                        android:padding="5dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
+                            android:layout_centerVertical="true"
                             android:text="@string/Served_Time"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
                             android:id="@+id/my_tv_servedtime"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:padding="5dp"
                         android:id="@+id/my_rl_closedcommissions"
-                        android:background="@drawable/btn_long_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_marginBottom="1dp"
-                        >
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
+                            android:layout_centerVertical="true"
                             android:text="@string/Closed_Commissions"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
                             android:id="@+id/my_tv_closedcommissions"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
+
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:padding="5dp"
                         android:id="@+id/my_rl_outstandingcommissions"
-                        android:background="@drawable/btn_long_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_marginBottom="1dp"
-                        >
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
                             android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
+                            android:layout_centerVertical="true"
                             android:text="@string/Outstanding_Commissions"
-                            />
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
                             android:id="@+id/my_tv_outstandingcommissions"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
+
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:padding="5dp"
                         android:id="@+id/my_rl_score"
-                        android:background="@drawable/btn_long_white"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
                         android:layout_marginBottom="1dp"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
-                            android:text="@string/Score"
-                            />
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
+                            android:text="@string/Score"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
                             android:id="@+id/my_tv_score"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/my_rl_faq"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:padding="5dp"
-                        android:id="@+id/my_rl_faq"
-                        android:background="@drawable/btn_long_white"
                         android:layout_marginBottom="1dp"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
-                            android:text="@string/FAQ"
-                            />
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
+                            android:text="@string/FAQ"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
                             android:id="@+id/my_tv_faq"
-                            />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -222,81 +292,74 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    >
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
                     <RelativeLayout
+                        android:id="@+id/my_rl_emailsupport"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:padding="5dp"
-                        android:id="@+id/my_rl_emailsupport"
-                        android:background="@drawable/btn_long_white"
                         android:layout_marginBottom="1dp"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
-                            android:text="@string/Email_Support"
-                            />
+                        android:background="@drawable/btn_long_white"
+                        android:padding="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:text="@string/Email_Support"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
                             android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
-                            />
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/my_rl_about"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:padding="5dp"
-                        android:id="@+id/my_rl_about"
                         android:background="@drawable/btn_long_white"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentLeft="true"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size_l"
-                            android:text="@string/Version"
-                            />
+                        android:padding="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
+                            android:text="@string/Version"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_l" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/text_size_m"
+                            android:layout_centerVertical="true"
                             android:text="v1.0.2"
-                            />
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/text_size_m" />
                     </RelativeLayout>
 
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/my_btn_logout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Logout"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/btn_long_white"
-                    android:textColor="@color/main_color"
-                    android:id="@+id/my_btn_logout"
+                    android:text="@string/Logout"
                     android:textAllCaps="false"
-                    android:layout_marginBottom="20dp"
-                    >
-                </Button>
+                    android:textColor="@color/main_color"></Button>
 
             </LinearLayout>
 

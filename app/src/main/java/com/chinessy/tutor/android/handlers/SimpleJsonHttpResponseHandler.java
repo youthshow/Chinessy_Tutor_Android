@@ -8,7 +8,7 @@ import com.chinessy.tutor.android.R;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.rey.material.app.SimpleDialog;
 
-import org.apache.http.Header;
+import cz.msebera.android.httpclient.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
