@@ -101,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
                             android:layout_centerVertical="true"
-                            android:text="@string/one2one_appointment_list"
+                            android:text="@string/one2one_appointment"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_l" />
 

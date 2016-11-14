@@ -36,7 +36,7 @@
     <!--me fragment-->
     <string name="Logout">登出</string>
     <string name="one2one_binded_stu_list">1对1绑定信息</string>
-    <string name="one2one_appointment_list">1对1预约信息</string>
+    <string name="one2one_appointment">1对1预约信息</string>
     <string name="on_live_time">直播时长</string>
     <string name="Version">版本</string>
     <string name="Score">综合评分</string>

@@ -28,7 +28,7 @@
                 android:layout_marginRight="8dp"
                 android:src="@mipmap/me_profilepic"
                 app:civ_border_color="@color/white"
-                app:civ_border_width="2dp" />
+                app:civ_border_width="0dp" />
 
 
             <TextView

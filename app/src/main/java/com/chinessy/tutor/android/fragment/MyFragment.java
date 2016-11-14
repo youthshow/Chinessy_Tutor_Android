@@ -11,10 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chinessy.tutor.android.Chinessy;
-import com.chinessy.tutor.android.activity.AppointmentListActivity;
+import com.chinessy.tutor.android.activity.AppointmentActivity;
 import com.chinessy.tutor.android.activity.BindedStuListActivity;
 import com.chinessy.tutor.android.activity.FAQActivity;
 import com.chinessy.tutor.android.activity.GuideActivity;
@@ -26,6 +25,7 @@ import com.rey.material.app.SimpleDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -101,15 +101,15 @@ public class MyFragment extends Fragment {
     class BindedStuListOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-             mActivity.startActivity(new Intent(mActivity, BindedStuListActivity.class));
+            mActivity.startActivity(new Intent(mActivity, BindedStuListActivity.class));
         }
     }
 
     class AppointmentListOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Toast.makeText(mActivity, "AppointmentListOnClickListener", Toast.LENGTH_SHORT).show();
-            //   startActivity(new Intent(mActivity, AppointmentListActivity.class));
+            // Toast.makeText(mActivity, "AppointmentListOnClickListener", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(mActivity, AppointmentActivity.class));
 
         }
     }
@@ -118,7 +118,6 @@ public class MyFragment extends Fragment {
     class EmailSupportOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
 
 
             Intent intent = new Intent(Intent.ACTION_SEND);
