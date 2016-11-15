@@ -1,6 +1,7 @@
 package com.chinessy.tutor.android.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.chinessy.tutor.android.Chinessy;
 import com.chinessy.tutor.android.MainActivity;
 import com.chinessy.tutor.android.R;
+import com.chinessy.tutor.android.activity.LiveRoomActivity;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
@@ -22,6 +24,7 @@ import com.rey.material.app.SimpleDialog;
 import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,8 +52,9 @@ public class HomeFragment extends Fragment {
     Activity mActivity;
 
     Button mBtnOnOffline;
+    Button mBtnOnLive;
     ImageView mIvStaus;
-//    ProgressDialog mProgressDialog;
+    //    ProgressDialog mProgressDialog;
     Handler mHandler = new HomeFragmentHandler();
     private OnFragmentInteractionListener mListener;
 
@@ -92,21 +96,30 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         mActivity = getActivity();
 
-        mBtnOnOffline = (Button)rootView.findViewById(R.id.home_btn_onoffline);
-        mIvStaus = (ImageView)rootView.findViewById(R.id.home_iv_fireballoon);
+        mBtnOnOffline = (Button) rootView.findViewById(R.id.home_btn_onoffline);
+        mBtnOnLive = (Button) rootView.findViewById(R.id.home_btn_onlive);
+        mIvStaus = (ImageView) rootView.findViewById(R.id.home_iv_fireballoon);
 
         mBtnOnOffline.setOnClickListener(new BtnOnOfflineClickListener());
+        mBtnOnLive.setOnClickListener(new BBtnOnLiveClickListener());
 
         syncTutorStatus();
         return rootView;
     }
 
-    class BtnOnOfflineClickListener implements View.OnClickListener{
+    class BBtnOnLiveClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(getContext(), LiveRoomActivity.class));
+        }
+    }
+
+    class BtnOnOfflineClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             User tutor = Chinessy.chinessy.getUser();
             String status = tutor.getUserProfile().getStatus();
-            if(status.equals(User.STATUS_AVAILABLE) || status.equals(User.STATUS_BUSY)){
+            if (status.equals(User.STATUS_AVAILABLE) || status.equals(User.STATUS_BUSY)) {
                 status = User.STATUS_OFFLINE;
 //                Chinessy.chinessy.getJusTalkHandler().logout(null, new JusTalkHandler.IOnBroadCastReceived() {
 //                    @Override
@@ -115,7 +128,7 @@ public class HomeFragment extends Fragment {
 //                    }
 //                });
                 mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
-            }else if(status.equals(User.STATUS_OFFLINE)){
+            } else if (status.equals(User.STATUS_OFFLINE)) {
                 status = User.STATUS_AVAILABLE;
 //                Chinessy.chinessy.getJusTalkHandler().login(new JusTalkHandler.IOnBroadCastReceived() {
 //                    @Override
@@ -130,7 +143,7 @@ public class HomeFragment extends Fragment {
 //                });
                 Chinessy.chinessy.getJusTalkHandler().login(null, null);
                 mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
-            }else{
+            } else {
                 final SimpleDialog simpleDialog = new SimpleDialog(mActivity);
                 simpleDialog.message(R.string.user_status_invalid);
                 simpleDialog.positiveAction(R.string.OK);
@@ -151,11 +164,11 @@ public class HomeFragment extends Fragment {
             try {
                 jsonObject.put("access_token", tutor.getAccessToken());
                 jsonObject.put("status", status);
-                InternalClient.postJson(mActivity, "internal/tutor/status", jsonObject, new SimpleJsonHttpResponseHandler(){
+                InternalClient.postJson(mActivity, "internal/tutor/status", jsonObject, new SimpleJsonHttpResponseHandler() {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         try {
-                            switch (response.getInt("code")){
+                            switch (response.getInt("code")) {
                                 case 10000:
                                     String newStatus = response.getJSONObject("data").getString("status");
                                     Chinessy.chinessy.getUser().getUserProfile().setStatus(newStatus, mActivity);
@@ -185,26 +198,27 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    public void syncTutorStatus(){
+    public void syncTutorStatus() {
         String status = Chinessy.chinessy.getUser().getUserProfile().getStatus();
-        if(status.equals(User.STATUS_AVAILABLE) || status.equals(User.STATUS_BUSY)){
+        if (status.equals(User.STATUS_AVAILABLE) || status.equals(User.STATUS_BUSY)) {
             mBtnOnOffline.setBackgroundResource(R.drawable.btn_long_red);
             mBtnOnOffline.setText(R.string.be_offline);
             mIvStaus.setImageResource(R.mipmap.fireballoon);
-            ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.app_name);
-        }else{
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.app_name);
+        } else {
             mBtnOnOffline.setBackgroundResource(R.drawable.btn_long_main);
             mBtnOnOffline.setText(R.string.be_online);
             mIvStaus.setImageResource(R.mipmap.fireballoon_off);
-            ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.offline_app_title);
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.offline_app_title);
         }
     }
 
-    class HomeFragmentHandler extends Handler{
+    class HomeFragmentHandler extends Handler {
         int mCount = 0;
+
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED:
                     mCount++;
                     break;
@@ -212,17 +226,17 @@ public class HomeFragment extends Fragment {
                     mCount--;
                     break;
             }
-            if(mCount >= 2){
+            if (mCount >= 2) {
                 mCount = 0;
                 syncTutorStatus();
 //                if(mProgressDialog!=null){
 ////                    mProgressDialog.cancel();
 //                }
-            }else if(mCount == 0){
+            } else if (mCount == 0) {
 //                if(mProgressDialog!=null){
 ////                    mProgressDialog.cancel();
 //                }
-            }else if(mCount <= -2){
+            } else if (mCount <= -2) {
                 mCount = 0;
 //                if(mProgressDialog!=null){
 ////                    mProgressDialog.cancel();
@@ -272,12 +286,13 @@ public class HomeFragment extends Fragment {
         Chinessy.chinessy.getUser().syncStatus(mActivity, new User.ISyncStatusCallback() {
             @Override
             public void callback(String newStatus) {
-                if(!status.equals(newStatus)){
+                if (!status.equals(newStatus)) {
                     syncTutorStatus();
                 }
             }
         });
     }
+
     @Override
     public void onPause() {
         super.onPause();

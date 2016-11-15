@@ -193,7 +193,8 @@
             android:name=".activity.FAQActivity"
             android:label="@string/title_activity_faq" />
         <activity android:name=".activity.BindedStuListActivity" />
-        <activity android:name=".activity.AppointmentActivity"></activity>
+        <activity android:name=".activity.AppointmentActivity" />
+        <activity android:name=".activity.LiveRoomActivity"></activity>
     </application>
 
 </manifest>
