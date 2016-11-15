@@ -108,7 +108,7 @@ public class MyFragment extends Fragment {
     class AppointmentListOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            // Toast.makeText(mActivity, "AppointmentListOnClickListener", Toast.LENGTH_SHORT).show();
+            //todo 显示小红点和不显示小红点
             startActivity(new Intent(mActivity, AppointmentActivity.class));
 
         }

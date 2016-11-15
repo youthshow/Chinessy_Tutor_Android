@@ -60,4 +60,7 @@
 
     <string name="Student">学生</string>
     <string name="Binding_Time">绑定时间(剩余)</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+
 </resources>
