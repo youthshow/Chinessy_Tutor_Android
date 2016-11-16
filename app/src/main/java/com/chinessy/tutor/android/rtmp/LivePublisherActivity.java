@@ -31,11 +31,21 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.chinessy.tutor.android.R;
+import com.chinessy.tutor.android.clients.ConstValue;
+import com.chinessy.tutor.android.clients.InternalClient;
+import com.chinessy.tutor.android.handlers.SimpleFileAsyncHttpResponseHandler;
+import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
 import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.ui.TXCloudVideoView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
 
 public class LivePublisherActivity extends RTMPBaseActivity implements View.OnClickListener, ITXLivePushListener /*, ImageReader.OnImageAvailableListener*/ {
     private static final String TAG = LivePublisherActivity.class.getSimpleName();
@@ -93,6 +103,7 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        webRequest();
 
         mLivePusher = new TXLivePusher(getActivity());
         mLivePushConfig = new TXLivePushConfig();
@@ -485,7 +496,13 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
     }
 
     private boolean startPublishRtmp() {
-        String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
+         String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
+
+       // String rtmpUrl = "rtmp://5228.livepush.myqcloud.com/live/";
+
+
+
+
         if (TextUtils.isEmpty(rtmpUrl) || (!rtmpUrl.trim().toLowerCase().startsWith("rtmp://"))) {
             mVideoPublish = false;
             Toast.makeText(getActivity().getApplicationContext(), "推流地址不合法，目前支持rtmp推流!", Toast.LENGTH_SHORT).show();
@@ -601,6 +618,41 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
         appendEventLog(0, "点击推流按钮！");
 
         return true;
+    }
+
+    private void webRequest() {
+        JSONObject jsonParams = new JSONObject();
+
+        //todo 修改房间号
+        try {
+            jsonParams.put("roomId", "001");
+            //  jsonParams.put("Key", Key);
+            //  jsonParams.put("Time", "2016-12-12 12:00:00");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        InternalClient.HKpostInternalJson(getContext(), ConstValue.getPushUrl, jsonParams, new SimpleJsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                super.onSuccess(statusCode, headers, responseString);
+                Log.d("PostPost", responseString + "");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                Log.d("PostPost", responseString + "-----onFailure");
+            }
+        });
+
     }
 
     private void stopPublishRtmp() {
@@ -806,13 +858,13 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
             super.onChange(selfChange);
             //更新按钮状态
             if (isActivityCanRotation()) {
-            //    mBtnOrientation.setVisibility(View.GONE);
+                //    mBtnOrientation.setVisibility(View.GONE);
                 onActivityRotation();
             } else {
-          //      mBtnOrientation.setVisibility(View.VISIBLE);
+                //      mBtnOrientation.setVisibility(View.VISIBLE);
                 mPortrait = true;
                 mLivePushConfig.setHomeOrientation(TXLiveConstants.VIDEO_ANGLE_HOME_DOWN);
-           //     mBtnOrientation.setBackgroundResource(R.drawable.landscape);
+                //     mBtnOrientation.setBackgroundResource(R.drawable.landscape);
                 mLivePusher.setRenderRotation(0);
                 mLivePusher.setConfig(mLivePushConfig);
             }

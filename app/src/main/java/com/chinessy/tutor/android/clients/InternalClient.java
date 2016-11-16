@@ -1,6 +1,7 @@
 package com.chinessy.tutor.android.clients;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.chinessy.tutor.android.Config;
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,7 +27,9 @@ public class InternalClient {
 
     private static final String BASE_STATIC_URL = "http://7xl3jz.com1.z0.glb.clouddn.com/";
 
+
     private static AsyncHttpClient client = new AsyncHttpClient();
+
     {
         client.addHeader("Content-Type", "application/json");
     }
@@ -47,7 +50,7 @@ public class InternalClient {
         client.get(getBaseStaticUrl(key), fileAsyncHttpResponseHandler);
     }
 
-    public static void postInternalJson(Context context, String url, JSONObject jsonParams, AsyncHttpResponseHandler responseHandler){
+    public static void postInternalJson(Context context, String url, JSONObject jsonParams, AsyncHttpResponseHandler responseHandler) {
         StringEntity entity = null;
         try {
             entity = new StringEntity(jsonParams.toString());
@@ -58,7 +61,7 @@ public class InternalClient {
         }
     }
 
-    public static void postJson(Context context, String url, JSONObject jsonParams, AsyncHttpResponseHandler responseHandler){
+    public static void postJson(Context context, String url, JSONObject jsonParams, AsyncHttpResponseHandler responseHandler) {
         StringEntity entity = null;
         try {
             entity = new StringEntity(jsonParams.toString());
@@ -72,10 +75,28 @@ public class InternalClient {
     private static String getAbsoluteInternalUrl(String relativeUrl) {
         return BASE_INTERNAL_URL + relativeUrl;
     }
+
     private static String getAbsoluteUrl(String relativeUrl) {
         return BASE_URL + relativeUrl;
     }
-    public static String getBaseStaticUrl(String key){
+
+    public static String getBaseStaticUrl(String key) {
         return BASE_STATIC_URL + key;
+    }
+
+    //重载 postInternalJson  区别 HK公司服务器 请求网站不一样
+    public static void HKpostInternalJson(Context context, String shortUrl, JSONObject jsonParams, AsyncHttpResponseHandler responseHandler) {
+        StringEntity entity = null;
+        try {
+            entity = new StringEntity(jsonParams.toString());
+            entity.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            client.post(context, ConstValue.BasicUrl + shortUrl, entity, "application/json", responseHandler);
+            Log.d("HK", ConstValue.BasicUrl + shortUrl);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void HKget(String shortUrl, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        client.get(ConstValue.BasicUrl + shortUrl, params, responseHandler);
     }
 }
