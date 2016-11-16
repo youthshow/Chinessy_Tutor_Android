@@ -23,11 +23,7 @@ public class BindedStuListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_binded_stu_list);
 
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.black));
-        actionBar.setTitle(R.string.one2one_binded_stu_list);
-        actionBar.setElevation(0f);
-        actionBar.setDisplayHomeAsUpEnabled(true);// 设置back按钮是否可见
+        SystemSetting();
 
         mRv_bindedstulists = (RecyclerView) findViewById(R.id.rv_bindedstulists);
         mRv_bindedstulists.setHasFixedSize(true);
@@ -55,6 +51,14 @@ public class BindedStuListActivity extends AppCompatActivity {
         mRv_bindedstulists.setAdapter(mAdapter);
 
 
+    }
+
+    private void SystemSetting() {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.black));
+        actionBar.setTitle(R.string.one2one_binded_stu_list);
+        actionBar.setElevation(0f);
+        actionBar.setDisplayHomeAsUpEnabled(true);// 设置back按钮是否可见
     }
 
     @Override

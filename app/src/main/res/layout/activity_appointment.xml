@@ -66,85 +66,124 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:weightSum="2">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/location" />
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="80dp"
-                        android:drawableLeft="@mipmap/location"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="Japan"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="4dp"
+                        android:text="JapanJapanJapanJapanJapanJapanJapan"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
-                </RelativeLayout>
+                </LinearLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp">
+
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/email" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:drawableLeft="@mipmap/email"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="pipa@gmail.com"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="4dp"
+                        android:text=" JapanJapanJapanJapanJapanJapanJapanJapan@gmail.com"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
-                </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 android:weightSum="2">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/twitter" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="80dp"
-                        android:drawableLeft="@mipmap/twitter"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="@string/Student"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="4dp"
+                        android:text="ellipsizeellipsizeellipsizeellipsizeellipsize  @gmail.com"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
-                </RelativeLayout>
 
-                <RelativeLayout
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@mipmap/facebook" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:drawableLeft="@mipmap/facebook"
-                        android:drawablePadding="6dp"
-                        android:gravity="center"
-                        android:text="@string/Student"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:paddingLeft="4dp"
+                        android:text=" ppapapppapapapapapapapapap@gmail.com"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
-                </RelativeLayout>
+                </LinearLayout>
 
 
             </LinearLayout>

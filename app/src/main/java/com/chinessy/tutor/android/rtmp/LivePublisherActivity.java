@@ -8,32 +8,22 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.clients.ConstValue;
 import com.chinessy.tutor.android.clients.InternalClient;
-import com.chinessy.tutor.android.handlers.SimpleFileAsyncHttpResponseHandler;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
@@ -496,11 +486,9 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
     }
 
     private boolean startPublishRtmp() {
-         String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
+        String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
 
-       // String rtmpUrl = "rtmp://5228.livepush.myqcloud.com/live/";
-
-
+        // String rtmpUrl = "rtmp://5228.livepush.myqcloud.com/live/";
 
 
         if (TextUtils.isEmpty(rtmpUrl) || (!rtmpUrl.trim().toLowerCase().startsWith("rtmp://"))) {
@@ -626,6 +614,7 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
         //todo 修改房间号
         try {
             jsonParams.put("roomId", "001");
+            //jsonParams.put("jsonParams", "jsonParams");
             //  jsonParams.put("Key", Key);
             //  jsonParams.put("Time", "2016-12-12 12:00:00");
         } catch (JSONException e) {
@@ -637,7 +626,7 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-
+                Log.d("PostPost", response.toString()+ "");
             }
 
             @Override
