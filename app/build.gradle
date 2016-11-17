@@ -20,7 +20,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.chinessy.tutor.android"
+        applicationId "com.chinessy.tutor.android.app"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 3

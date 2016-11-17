@@ -32,12 +32,12 @@
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_redial_video_state.xml"
     },
     {
-        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_end_state.xml",
-        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_end_state.xml"
-    },
-    {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_audio_bluetooth.xml",
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_audio_bluetooth.xml"
+    },
+    {
+        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_end_state.xml",
+        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_end_state.xml"
     },
     {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_video_voice_only.xml",

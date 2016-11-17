@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.multidex.MultiDexApplication;
 
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.JusTalkHandler;
@@ -32,7 +33,7 @@ import java.util.TimerTask;
 /**
  * Created by larry on 15/7/10.
  */
-public class Chinessy extends Application implements Application.ActivityLifecycleCallbacks {
+public class Chinessy extends MultiDexApplication implements Application.ActivityLifecycleCallbacks {
     final static String tag = "ChinessyApplication";
 
     public final static int HANDLER_JUSTALK_LOGIN = 100;

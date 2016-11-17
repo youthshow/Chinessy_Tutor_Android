@@ -626,19 +626,22 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
-                Log.d("PostPost", response.toString()+ "");
+                Log.d("PostPost", response.toString() + "");
+              //  Toast.makeText(getContext(), response.toString() + "-----onSuccess", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 super.onSuccess(statusCode, headers, responseString);
                 Log.d("PostPost", responseString + "");
+               // Toast.makeText(getContext(), responseString + "-----onSuccess", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("PostPost", responseString + "-----onFailure");
+                //  Log.d("PostPost", responseString + "-----onFailure");
+              //  Toast.makeText(getContext(), responseString + "-----onFailure", Toast.LENGTH_SHORT).show();
             }
         });
 
