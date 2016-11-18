@@ -40,12 +40,12 @@
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_audio_headset_disabled.png"
     },
     {
-        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_termremind.png",
-        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_termremind.png"
-    },
-    {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_signal_1.png",
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_signal_1.png"
+    },
+    {
+        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_termremind.png",
+        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_termremind.png"
     },
     {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_video_camera_rear_disabled.png",
@@ -212,12 +212,12 @@
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_camera_on_normal.png"
     },
     {
-        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_camera_on_disabled.png",
-        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_camera_on_disabled.png"
-    },
-    {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_video_camera_rear_normal.png",
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_video_camera_rear_normal.png"
+    },
+    {
+        "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_camera_on_disabled.png",
+        "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/call_camera_on_disabled.png"
     },
     {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/call_error_cancel.png",

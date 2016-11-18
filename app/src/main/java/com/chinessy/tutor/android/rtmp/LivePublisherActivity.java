@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -23,18 +22,11 @@ import android.widget.Toast;
 
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.clients.ConstValue;
-import com.chinessy.tutor.android.clients.InternalClient;
-import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.tencent.rtmp.ITXLivePushListener;
 import com.tencent.rtmp.TXLiveConstants;
 import com.tencent.rtmp.TXLivePushConfig;
 import com.tencent.rtmp.TXLivePusher;
 import com.tencent.rtmp.ui.TXCloudVideoView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import cz.msebera.android.httpclient.Header;
 
 
 public class LivePublisherActivity extends RTMPBaseActivity implements View.OnClickListener, ITXLivePushListener /*, ImageReader.OnImageAvailableListener*/ {
@@ -90,11 +82,12 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
         return BitmapFactory.decodeResource(resources, id, opts);
     }
 
+    String rtmpUrl;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        webRequest();
-
+        rtmpUrl = getArguments().getString("url");
         mLivePusher = new TXLivePusher(getActivity());
         mLivePushConfig = new TXLivePushConfig();
 
@@ -485,17 +478,18 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
         mRotationObserver.stopObserver();
     }
 
+
     private boolean startPublishRtmp() {
-        String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
+        // String rtmpUrl = "rtmp://2000.livepush.myqcloud.com/live/2000_1f4652b179af11e69776e435c87f075e?bizid=2000";
 
         // String rtmpUrl = "rtmp://5228.livepush.myqcloud.com/live/";
+        //String rtmpUrl = "rtmp://5228.livepush.myqcloud.com/live/5228_002?bizid=5228&txSecret=3ffd40e72b1da37da1e5fde1e4bc745f&txTime=584E20C0";
 
-
-        if (TextUtils.isEmpty(rtmpUrl) || (!rtmpUrl.trim().toLowerCase().startsWith("rtmp://"))) {
-            mVideoPublish = false;
-            Toast.makeText(getActivity().getApplicationContext(), "推流地址不合法，目前支持rtmp推流!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+//        if (TextUtils.isEmpty(rtmpUrl) || (!rtmpUrl.trim().toLowerCase().startsWith("rtmp://"))) {
+//            mVideoPublish = false;
+//            Toast.makeText(getActivity().getApplicationContext(), "推流地址不合法，目前支持rtmp推流!", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
 
         mCaptureView.setVisibility(View.VISIBLE);
         mLivePushConfig.setWatermark(mBitmap, 10, 10);
@@ -608,12 +602,113 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
         return true;
     }
 
+
     private void webRequest() {
+        Log.d("VolleyPostPost", ConstValue.BasicUrl + ConstValue.getPushUrl);
+      /*  StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://120.76.223.83:8090/Chinessy/index.php/Home/Index/getPlayUrl",
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        Log.d("VolleyPostPost", "response -> " + response);
+                        //Toast.makeText()
+                        liveBeans Beans = new Gson().fromJson(response.toString(), liveBeans.class);
+                        if ("true".equals(Beans.getStatus().toString())) {
+                            rtmpUrl = Beans.getData();
+                            Log.d("VolleyPostPost", "rtmpUrl -> " + rtmpUrl);
+                        }
+                    }
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyPostPost", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map getParams() {
+                //在这里设置需要post的参数
+                Map map = new HashMap();
+                map.put("roomId", "002");
+
+                return map;
+            }
+        };
+
+        Chinessy.requestQueue.add(stringRequest);
+
+
+/*
+        HashMap<String, String> opMap = new HashMap<String, String>();
+        opMap.put("roomId", "002");
+        //opMap.put("Time", "2016-12-30 12:00:00");
+        JSONObject opJsonObject = new JSONObject(opMap);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, BasicUrl + ConstValue.getPushUrl, opJsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject jsonObject) {
+                try {
+                    if (jsonObject.getString("status").equals("success")) {
+                        Log.w("LOG", "post /api/use/history/ success");
+
+                        liveBeans Beans = new Gson().fromJson(jsonObject, liveBeans.class);
+                    } else {
+                        Log.w("LOG", "post /api/use/history/ failure");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+*/
+        /*
+        Log.d("VolleyPostPost", "VolleyPostPost");
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, BasicUrl + ConstValue.getPushUrl,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        Log.d("VolleyPostPost", "response -> " + response);
+                        //Toast.makeText()
+                        liveBeans Beans = new Gson().fromJson(response.toString(), liveBeans.class);
+                        if ("true".equals(Beans.getStatus().toString())) {
+                            rtmpUrl = Beans.getData();
+
+                            Log.d("VolleyPostPost", rtmpUrl);
+                        }
+                    }
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("VolleyPostPost", error.getMessage(), error);
+            }
+        }) {
+            @Override
+            protected Map getParams() {
+                //在这里设置需要post的参数
+                Map map = new HashMap();
+                map.put("roomId", "002");
+                // map.put("time", "2016-12-30 12:00:00");
+
+                return map;
+            }
+        };
+
+        requestQueue.add(stringRequest);
+
+*/
+       /*
         JSONObject jsonParams = new JSONObject();
 
         //todo 修改房间号
         try {
-            jsonParams.put("roomId", "001");
+            jsonParams.put("roomId", "002");
             //jsonParams.put("jsonParams", "jsonParams");
             //  jsonParams.put("Key", Key);
             //  jsonParams.put("Time", "2016-12-12 12:00:00");
@@ -627,26 +722,90 @@ public class LivePublisherActivity extends RTMPBaseActivity implements View.OnCl
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 Log.d("PostPost", response.toString() + "");
-              //  Toast.makeText(getContext(), response.toString() + "-----onSuccess", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(getContext(), response.toString() + "-----onSuccess", Toast.LENGTH_SHORT).show();
+                liveBeans Beans = new Gson().fromJson(response.toString(), liveBeans.class);
+                if ("true".equals(Beans.getStatus().toString())) {
+                    rtmpUrl = Beans.getData();
+                }
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 super.onSuccess(statusCode, headers, responseString);
                 Log.d("PostPost", responseString + "");
-               // Toast.makeText(getContext(), responseString + "-----onSuccess", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), responseString + "-----onSuccess", Toast.LENGTH_SHORT).show();
+                liveBeans Beans = new Gson().fromJson(responseString                                                                                                                                                                                                        .toString(), liveBeans.class);
+                if ("true".equals(Beans.getStatus().toString())) {
+                    rtmpUrl = Beans.getData();
+                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
-                //  Log.d("PostPost", responseString + "-----onFailure");
-              //  Toast.makeText(getContext(), responseString + "-----onFailure", Toast.LENGTH_SHORT).show();
+                Log.d("PostPost", responseString + "-----onFailure");
+                //  Toast.makeText(getContext(), responseString + "-----onFailure", Toast.LENGTH_SHORT).show();
             }
         });
+*/
 
+        Log.d("OkHttpUtils", "OkHttpUtils");
+
+/*
+        OkHttpUtils
+                .post()
+                .tag(getContext())
+                .params(getParams())
+                .url(BasicUrl + ConstValue.getPushUrl)
+                //.addHeader("User-Agent", MyApplication.getApplication().getUserAgent())
+                .build()
+                .writeTimeOut(50000)
+                .readTimeOut(50000)
+                .connTimeOut(50000)
+                .execute(new StringCallback() {
+//                    @Override
+//                    public void onBefore(Request request, int id) {
+//                        super.onBefore(request, id);
+//                       // SVProgressHUD.showWithStatus(LogisticsListActivity.this, "加载中...", SVProgressHUD.SVProgressHUDMaskType.Black);
+//                    }
+
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+//                        SVProgressHUD.dismiss(LogisticsListActivity.this);
+//                        mViewStub.setVisibility(View.VISIBLE);
+//                        mRecyclerView.getRefreshableView().setVisibility(View.GONE);
+//                        mRecyclerView.onRefreshComplete();
+//                        Toast.makeText(LogisticsListActivity.this, "网络链接异常，请检查网络或稍后再试！",
+//                                Toast.LENGTH_LONG).show();
+                        Log.d("OkHttpUtils", "onError" + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.d("OkHttpUtils", "response" + response.toString());
+//                        SVProgressHUD.dismiss(LogisticsListActivity.this);
+//                        analysisJsonString(response);
+                        liveBeans Beans = new Gson().fromJson(response.toString(), liveBeans.class);
+                        if ("true".equals(Beans.getStatus().toString())) {
+                            rtmpUrl = Beans.getData();
+                            Log.d("OkHttpUtils", "rtmpUrl" + rtmpUrl.toString());
+                        }
+                    }
+                });
+
+                */
     }
 
+
+    /**
+     * 获取请求参数Map
+     *
+     * @return private Map<String, String> getParams() {
+     * Map<String, String> map = new HashMap<>();
+     * map.put("roomId", "001");
+     * return map;
+     * }
+     */
     private void stopPublishRtmp() {
 
 //        StopScreenCapture();

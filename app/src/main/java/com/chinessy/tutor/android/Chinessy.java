@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.multidex.MultiDexApplication;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.JusTalkHandler;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
@@ -49,7 +51,7 @@ public class Chinessy extends MultiDexApplication implements Application.Activit
     boolean ifInBackground = false;
 
     JusTalkHandler jusTalkHandler;
-
+    public static RequestQueue requestQueue;
     public Handler mHandler = new ChinessyHandler();
 
     @Override
@@ -64,6 +66,8 @@ public class Chinessy extends MultiDexApplication implements Application.Activit
         // MobclickAgent.updateOnlineConfig(getApplicationContext());
         MobclickAgent.openActivityDurationTrack(false);
         //  AnalyticsConfig.enableEncrypt(true);
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
     }
 
     public void addActivity(Activity activity) {
