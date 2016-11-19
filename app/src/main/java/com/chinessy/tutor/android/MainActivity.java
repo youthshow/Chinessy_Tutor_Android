@@ -23,7 +23,6 @@ import com.chinessy.tutor.android.fragment.HomeFragment;
 import com.chinessy.tutor.android.fragment.MyFragment;
 import com.chinessy.tutor.android.fragment.ReservationFragment;
 import com.chinessy.tutor.android.service.TutorService;
-import com.umeng.analytics.MobclickAgent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -202,13 +201,13 @@ public class MainActivity extends ActionBarActivity implements HomeFragment.OnFr
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+        //MobclickAgent.onResume(this);
         Chinessy.chinessy.getChinessyHandler().sendEmptyMessage(Chinessy.HANDLER_CHECK_SERVICE);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+       // MobclickAgent.onPause(this);
     }
 }

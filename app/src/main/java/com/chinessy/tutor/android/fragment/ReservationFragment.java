@@ -23,7 +23,6 @@ import com.chinessy.tutor.android.adapter.ReservationListAdapter;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.Reservation;
-import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
 import org.json.JSONArray;
@@ -345,7 +344,7 @@ public class ReservationFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("ReservationFragment");
+        //MobclickAgent.onPageStart("ReservationFragment");
 
         if(isIsNeed2Refresh()){
            refreshPage();
@@ -354,6 +353,6 @@ public class ReservationFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("ReservationFragment");
+       // MobclickAgent.onPageEnd("ReservationFragment");
     }
 }

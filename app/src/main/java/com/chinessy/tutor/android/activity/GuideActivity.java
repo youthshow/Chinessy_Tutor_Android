@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.chinessy.tutor.android.R;
-import com.umeng.analytics.MobclickAgent;
 
 
 public class GuideActivity extends Activity {
@@ -73,12 +72,12 @@ public class GuideActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+        //MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+       // MobclickAgent.onPause(this);
     }
 }

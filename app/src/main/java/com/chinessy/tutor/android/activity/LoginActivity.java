@@ -44,7 +44,6 @@ import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
 import org.json.JSONException;
@@ -422,13 +421,13 @@ public class LoginActivity extends ActionBarActivity implements LoaderCallbacks<
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+        //MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+        //MobclickAgent.onPause(this);
     }
 }
 

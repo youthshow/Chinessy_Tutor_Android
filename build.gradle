@@ -17,16 +17,16 @@ allprojects {
         jcenter()
     }
 }
-ext {
-    compileSdkVersion = 25
-    buildToolsVersion = "25.0.0"
+//ext {
+//    compileSdkVersion = 25
+//    buildToolsVersion = "23.0.2"
+//
+//    targetSdkVersion = 22
+//
+////    versionCode = 405001
+////    versionName = "0.4.5.1"
+//}
 
-    targetSdkVersion = 22
-
-//    versionCode = 405001
-//    versionName = "0.4.5.1"
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}

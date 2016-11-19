@@ -22,7 +22,6 @@ import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.rey.material.app.SimpleDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -296,13 +295,13 @@ public class MyFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("MyFragment");
+        //MobclickAgent.onPageStart("MyFragment");
         refreshContent();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("MyFragment");
+        //MobclickAgent.onPageEnd("MyFragment");
     }
 }

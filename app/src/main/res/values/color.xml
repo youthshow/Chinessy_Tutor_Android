@@ -12,14 +12,15 @@
     <color name="light_gray_text">#7F7F7F</color>
 
 
-    <color name="main_bg_gray">#E8E8E7</color>
+    <color name="transparent_grey_lighter">#80000000</color>
+    <color name="transparent_grey_darker">#A0000000</color>
 
     <color name="btn_main_pressed">#63a100</color>
     <color name="btn_white_pressed">#ddd</color>
     <color name="btn_black_pressed">#555</color>
     <color name="btn_disabled">#ccc</color>
     <color name="btn_red">#b20000</color>
-
+    <color name="main_bg_gray">#E8E8E7</color>
     <color name="google_red">#FFC93437</color>
     <color name="google_blue">#FF375BF1</color>
     <color name="google_yellow">#FFF7D23E</color>

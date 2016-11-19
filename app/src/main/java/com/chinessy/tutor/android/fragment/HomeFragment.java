@@ -21,7 +21,6 @@ import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.rey.material.app.SimpleDialog;
-import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -280,7 +279,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("HomeFragment");
+        //MobclickAgent.onPageStart("HomeFragment");
         syncTutorStatus();
         final String status = Chinessy.chinessy.getUser().getUserProfile().getStatus();
         Chinessy.chinessy.getUser().syncStatus(mActivity, new User.ISyncStatusCallback() {
@@ -296,6 +295,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("HomeFragment");
+       // MobclickAgent.onPageEnd("HomeFragment");
     }
 }

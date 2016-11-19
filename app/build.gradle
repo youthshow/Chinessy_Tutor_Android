@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion "23.0.2"
 
     afterEvaluate {
         tasks.matching {
@@ -20,7 +20,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.chinessy.tutor.android.app"
+        applicationId "com.chinessy.tutor.android"
         minSdkVersion 15
         targetSdkVersion 22
         versionCode 3
@@ -35,8 +35,14 @@ android {
     }
     dexOptions {
         javaMaxHeapSize "4g"
+        preDexLibraries true
+        incremental true
+//        dexInProcess = true
     }
-
+    // 移除lint检查的error
+    lintOptions {
+        abortOnError false
+    }
 
 }
 

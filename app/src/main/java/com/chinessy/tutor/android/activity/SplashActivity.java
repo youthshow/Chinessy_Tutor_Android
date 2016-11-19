@@ -22,7 +22,6 @@ import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.utils.FileUtil;
 import com.chinessy.tutor.android.utils.Utils;
 import com.rey.material.app.SimpleDialog;
-import com.umeng.analytics.MobclickAgent;
 
 
 import cz.msebera.android.httpclient.Header;
@@ -256,12 +255,12 @@ public class SplashActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+        //MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+        //MobclickAgent.onPause(this);
     }
 }

@@ -68,8 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
                 android:weightSum="2">
 
                 <LinearLayout
@@ -117,7 +117,7 @@
                         android:ellipsize="end"
                         android:lines="1"
                         android:paddingLeft="4dp"
-                        android:text=" JapanJapanJapanJapanJapanJapanJapanJapan@gmail.com"
+                        android:text="ellipsizeellipsizeellipsizeellipsizeellipsize  @gmail.com"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
                 </LinearLayout>
@@ -129,8 +129,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                android:paddingLeft="50dp"
-                android:paddingRight="50dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
                 android:weightSum="2">
 
                 <LinearLayout
@@ -180,7 +180,7 @@
                         android:ellipsize="end"
                         android:lines="1"
                         android:paddingLeft="4dp"
-                        android:text=" ppapapppapapapapapapapapap@gmail.com"
+                        android:text="ellipsizeellipsizeellipsizeellipsizeellipsize  @gmail.com"
                         android:textColor="@color/gray"
                         android:textSize="@dimen/text_size_s" />
                 </LinearLayout>

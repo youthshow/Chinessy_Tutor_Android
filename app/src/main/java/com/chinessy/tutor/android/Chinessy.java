@@ -19,7 +19,6 @@ import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.chinessy.tutor.android.service.TutorService;
 import com.chinessy.tutor.android.utils.ServiceUtil;
-import com.umeng.analytics.MobclickAgent;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -64,7 +63,7 @@ public class Chinessy extends MultiDexApplication implements Application.Activit
         registerActivityLifecycleCallbacks(this);
 
         // MobclickAgent.updateOnlineConfig(getApplicationContext());
-        MobclickAgent.openActivityDurationTrack(false);
+        //MobclickAgent.openActivityDurationTrack(false);
         //  AnalyticsConfig.enableEncrypt(true);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());

@@ -5,17 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.chinessy.tutor.android.R;
 
 public class AppointmentActivity extends AppCompatActivity {
     private LinearLayout mLlChososeArea;
+    private TextView mTvDeenAgree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
-//        findViewById(R.id.tv_been_agree);
+
+        mTvDeenAgree = (TextView) findViewById(R.id.tv_been_agree);
         mLlChososeArea = (LinearLayout) findViewById(R.id.ll_choose_area);
         findViewById(R.id.btn_disagree).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,6 +30,14 @@ public class AppointmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mLlChososeArea.setVisibility(View.GONE);
+                mTvDeenAgree.setText("已同意!");
+            }
+        });
+        findViewById(R.id.btn_agree).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLlChososeArea.setVisibility(View.GONE);
+                mTvDeenAgree.setText("已拒绝!");
             }
         });
         ActionBar actionBar = getSupportActionBar();
