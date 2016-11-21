@@ -13,19 +13,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.chinessy.tutor.android.Chinessy;
 import com.chinessy.tutor.android.MainActivity;
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.activity.LiveRoomActivity;
+import com.chinessy.tutor.android.beans.BasicBean;
+import com.chinessy.tutor.android.clients.ConstValue;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
+import com.chinessy.tutor.android.utils.LogUtils;
+import com.google.gson.Gson;
 import com.rey.material.app.SimpleDialog;
 
 import cz.msebera.android.httpclient.Header;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,7 +112,7 @@ public class HomeFragment extends Fragment {
 
         mBtnOnOffline.setOnClickListener(new BtnOnOfflineClickListener());
         mBtnOnLive.setOnClickListener(new BBtnOnLiveClickListener());
-
+        webRequest();
         syncTutorStatus();
         return rootView;
     }
@@ -169,6 +180,7 @@ public class HomeFragment extends Fragment {
                         try {
                             switch (response.getInt("code")) {
                                 case 10000:
+
                                     String newStatus = response.getJSONObject("data").getString("status");
                                     Chinessy.chinessy.getUser().getUserProfile().setStatus(newStatus, mActivity);
                                     mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
@@ -295,6 +307,43 @@ public class HomeFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-       // MobclickAgent.onPageEnd("HomeFragment");
+        // MobclickAgent.onPageEnd("HomeFragment");
+    }
+
+
+    private void webRequest() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstValue.BasicUrl + ConstValue.getStudio,
+                // StringRequest stringRequest = new StringRequest(Request.Method.GET, ConstValue.BasicUrl + "getPlayUrl"+"?roomId=002",
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        LogUtils.d(ConstValue.getStudio + " :-->" + response.toString());
+                        BasicBean basicBean = new Gson().fromJson(response.toString(), BasicBean.class);
+                        if ("true".equals(basicBean.getStatus().toString())) {
+
+                        }
+                    }
+
+
+                }, new Response.ErrorListener()
+
+        {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                LogUtils.d(ConstValue.getStudio + " :error-->" + error.toString());
+            }
+        })
+
+        {
+            @Override
+            protected Map getParams() {
+                //在这里设置需要post的参数
+                Map map = new HashMap();
+                map.put("userId", Chinessy.chinessy.getUser().getId());
+                return map;
+            }
+        };
+
+        Chinessy.requestQueue.add(stringRequest);
     }
 }

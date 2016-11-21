@@ -35,7 +35,7 @@ import java.util.TimerTask;
  * Created by larry on 15/7/10.
  */
 public class Chinessy extends MultiDexApplication implements Application.ActivityLifecycleCallbacks {
-    final static String tag = "ChinessyApplication";
+    public final static String tag = "ChinessyApplication";
 
     public final static int HANDLER_JUSTALK_LOGIN = 100;
     public final static int HANDLER_CHECK_SERVICE = 101;

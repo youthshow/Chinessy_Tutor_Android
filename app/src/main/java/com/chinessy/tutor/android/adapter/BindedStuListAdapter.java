@@ -4,20 +4,27 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
+import com.bumptech.glide.Glide;
 import com.chinessy.tutor.android.R;
+import com.chinessy.tutor.android.activity.BindedStuListActivity;
+import com.chinessy.tutor.android.beans.getTeacherBinds;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by susan on 16/2/29.
  */
 public class BindedStuListAdapter extends RecyclerView.Adapter<BindedStuListAdapter.ViewHolder> {
     private Context mContext;
-    private List<Integer> mList;
+    private List<getTeacherBinds.DataBean.StudentBean> mList;
 
-    public BindedStuListAdapter(Context context, List<Integer> mData) {
+
+    public BindedStuListAdapter(BindedStuListActivity context, List<getTeacherBinds.DataBean.StudentBean> mData) {
         super();
         this.mContext = context;
         this.mList = mData;
@@ -34,33 +41,26 @@ public class BindedStuListAdapter extends RecyclerView.Adapter<BindedStuListAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//            holder.mName.setText("userName");
-//            holder.mName.setText("client.email");
-//            holder.mName.setText("client.phone");
-//        holder.mAddress.setText("address");
+        getTeacherBinds.DataBean.StudentBean bean = mList.get(position);
+        holder.tutoritem_tv_name.setText(bean.getName());
+        holder.tutoritem_tv_mins.setText(bean.getBinding_minutes() + "分钟");
+        Glide.with(mContext)
+                .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                .placeholder(R.mipmap.me_profilepic)
+                .into(holder.tutoritem_iv_headimg);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-//        CustomRoundView roundview_avatar;
-//        TextView mName;
-//        TextView tv_score;
-//        TextView tv_location;
-//        TextView tv_country;
-//        TextView tv_onlive;
-//        ImageView iv_screenshot;
-
+        CircleImageView tutoritem_iv_headimg;
+        TextView tutoritem_tv_name;
+        TextView tutoritem_tv_mins;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-//            this.roundview_avatar = (CustomRoundView) itemView.findViewById(R.id.roundview_avatar);
-//            this.mName = (TextView) itemView.findViewById(R.id.tv_name);
-//            this.tv_score = (TextView) itemView.findViewById(R.id.tv_score);
-//            this.tv_location = (TextView) itemView.findViewById(R.id.tv_location);
-//            this.tv_country = (TextView) itemView.findViewById(R.id.tv_country);
-//            this.iv_screenshot = (ImageView) itemView.findViewById(R.id.iv_screenshot);
-//            this.tv_onlive = (TextView) itemView.findViewById(R.id.tv_onlive);
-
+            this.tutoritem_iv_headimg = (CircleImageView) itemView.findViewById(R.id.tutoritem_iv_headimg);
+            this.tutoritem_tv_name = (TextView) itemView.findViewById(R.id.tutoritem_tv_name);
+            this.tutoritem_tv_mins = (TextView) itemView.findViewById(R.id.tutoritem_tv_mins);
 
 
             //为item添加普通点击回调
