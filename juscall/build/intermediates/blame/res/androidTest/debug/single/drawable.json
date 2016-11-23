@@ -4,12 +4,12 @@
         "source": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_incoming_anim_bg.xml"
     },
     {
-        "merged": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_speaker_state.xml",
-        "source": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_speaker_state.xml"
-    },
-    {
         "merged": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_camera_off_state.xml",
         "source": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_camera_off_state.xml"
+    },
+    {
+        "merged": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_speaker_state.xml",
+        "source": "/Users/susan/Desktop/Chinessy_Tutor_Android/juscall/build/intermediates/bundles/debug/res/drawable/call_speaker_state.xml"
     },
     {
         "merged": "/Users/susan/Desktop/直播/【Android版本】源代码/[1202] Hanyushi(老师版)_Android/Chinessy_Tutor_Android/juscall/build/intermediates/res/merged/androidTest/debug/drawable/call_camera_on_state.xml",

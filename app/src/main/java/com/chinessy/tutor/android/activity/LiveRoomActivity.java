@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -23,7 +22,6 @@ import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.beans.liveBeans;
 import com.chinessy.tutor.android.clients.ConstValue;
 import com.chinessy.tutor.android.rtmp.AudienceListAdapter;
-import com.chinessy.tutor.android.rtmp.LivePublisherActivity;
 import com.chinessy.tutor.android.rtmp.MessageAdapter;
 import com.google.gson.Gson;
 
@@ -37,7 +35,6 @@ import cz.msebera.android.httpclient.util.TextUtils;
 
 public class LiveRoomActivity extends AppCompatActivity {
 
-    private LivePublisherActivity mPublisherFragment;
     private RecyclerView rvAudience;
 
     private ListView lvmessage;
@@ -104,7 +101,7 @@ public class LiveRoomActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         rvAudience.setAdapter(mAdapter);
     }
-
+/*
     private void showLiveFragment(String pushurl) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         mPublisherFragment = new LivePublisherActivity();
@@ -114,7 +111,7 @@ public class LiveRoomActivity extends AppCompatActivity {
         transaction.replace(R.id.content_layout, mPublisherFragment);
         transaction.commit();
     }
-
+*/
     private void SystemSetting() {
         // Hide UI first
         ActionBar actionBar = getSupportActionBar();
@@ -135,7 +132,7 @@ public class LiveRoomActivity extends AppCompatActivity {
                             String rtmpUrl = Beans.getData();
 
                             if (!TextUtils.isEmpty(rtmpUrl)) {
-                                showLiveFragment(rtmpUrl);
+                              //  showLiveFragment(rtmpUrl);
                             }
                         }
                     }
