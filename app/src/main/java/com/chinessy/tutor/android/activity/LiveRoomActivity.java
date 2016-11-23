@@ -1,6 +1,7 @@
 package com.chinessy.tutor.android.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.beans.liveBeans;
 import com.chinessy.tutor.android.clients.ConstValue;
 import com.chinessy.tutor.android.rtmp.AudienceListAdapter;
+import com.chinessy.tutor.android.rtmp.LiveCameraActivity;
 import com.chinessy.tutor.android.rtmp.MessageAdapter;
 import com.google.gson.Gson;
 
@@ -40,6 +42,7 @@ public class LiveRoomActivity extends AppCompatActivity {
     private ListView lvmessage;
     private List<String> messageData = new LinkedList<>();
     private MessageAdapter messageAdapter;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +104,18 @@ public class LiveRoomActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         rvAudience.setAdapter(mAdapter);
     }
-/*
-    private void showLiveFragment(String pushurl) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        mPublisherFragment = new LivePublisherActivity();
-        Bundle bundle = new Bundle();
-        bundle.putString("url", pushurl);
-        mPublisherFragment.setArguments(bundle);
-        transaction.replace(R.id.content_layout, mPublisherFragment);
-        transaction.commit();
-    }
-*/
+
+    /*
+        private void showLiveFragment(String pushurl) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            mPublisherFragment = new LivePublisherActivity();
+            Bundle bundle = new Bundle();
+            bundle.putString("url", pushurl);
+            mPublisherFragment.setArguments(bundle);
+            transaction.replace(R.id.content_layout, mPublisherFragment);
+            transaction.commit();
+        }
+    */
     private void SystemSetting() {
         // Hide UI first
         ActionBar actionBar = getSupportActionBar();
@@ -132,7 +136,12 @@ public class LiveRoomActivity extends AppCompatActivity {
                             String rtmpUrl = Beans.getData();
 
                             if (!TextUtils.isEmpty(rtmpUrl)) {
-                              //  showLiveFragment(rtmpUrl);
+                                //  showLiveFragment(rtmpUrl);
+
+                                Intent intent = new Intent(LiveRoomActivity.this, LiveCameraActivity.class);
+                                intent.putExtra("rtmpUrl", rtmpUrl);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }
                         }
                     }

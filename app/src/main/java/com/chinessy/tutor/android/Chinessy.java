@@ -19,6 +19,7 @@ import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
 import com.chinessy.tutor.android.service.TutorService;
 import com.chinessy.tutor.android.utils.ServiceUtil;
+import com.duanqu.qupai.jni.ApplicationGlue;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -67,6 +68,15 @@ public class Chinessy extends MultiDexApplication implements Application.Activit
         //  AnalyticsConfig.enableEncrypt(true);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+//------------阿里云
+        System.loadLibrary("gnustl_shared");
+//        System.loadLibrary("ijkffmpeg");//目前使用微博的ijkffmpeg会出现1K再换wifi不重连的情况
+        System.loadLibrary("qupai-media-thirdparty");
+//        System.loadLibrary("alivc-media-jni");
+        System.loadLibrary("qupai-media-jni");
+        ApplicationGlue.initialize(this);
+        //------------阿里云
+
     }
 
     public void addActivity(Activity activity) {

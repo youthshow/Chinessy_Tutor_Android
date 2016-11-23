@@ -33,7 +33,7 @@ public class AppointmentActivity extends AppCompatActivity {
                 mTvDeenAgree.setText("已同意!");
             }
         });
-        findViewById(R.id.btn_agree).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_disagree).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mLlChososeArea.setVisibility(View.GONE);

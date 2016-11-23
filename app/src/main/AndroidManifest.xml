@@ -118,12 +118,12 @@
             android:label="@string/title_activity_guide" />
 
         <!--<service-->
-            <!--android:name="com.umeng.update.net.DownloadingService"-->
-            <!--android:process=":DownloadingService" />-->
+        <!--android:name="com.umeng.update.net.DownloadingService"-->
+        <!--android:process=":DownloadingService" />-->
 
         <!--<activity-->
-            <!--android:name="com.umeng.update.UpdateDialogActivity"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--android:name="com.umeng.update.UpdateDialogActivity"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
 
         <!-- justalk -->
         <activity
@@ -213,6 +213,13 @@
         <activity android:name=".activity.BindedStuListActivity" />
         <activity android:name=".activity.AppointmentActivity" />
         <activity android:name=".activity.LiveRoomActivity"></activity>
+
+        <activity
+            android:name=".rtmp.LiveCameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:launchMode="singleTop" />
+
     </application>
 
 </manifest>

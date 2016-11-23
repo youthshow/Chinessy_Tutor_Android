@@ -172,6 +172,8 @@ public class JusTalkHandler {
             }
         }
     }
+
+
     class LoginDidFailBroadcastReceiver extends BroadcastReceiver{
         IOnBroadCastReceived mIOnBroadCastReceived;
         public LoginDidFailBroadcastReceiver(IOnBroadCastReceived iOnBroadCastReceived){

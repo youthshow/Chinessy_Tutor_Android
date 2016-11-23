@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +24,12 @@ import com.chinessy.tutor.android.MainActivity;
 import com.chinessy.tutor.android.R;
 import com.chinessy.tutor.android.activity.LiveRoomActivity;
 import com.chinessy.tutor.android.beans.BasicBean;
+import com.chinessy.tutor.android.beans.liveBeans;
 import com.chinessy.tutor.android.clients.ConstValue;
 import com.chinessy.tutor.android.clients.InternalClient;
 import com.chinessy.tutor.android.handlers.SimpleJsonHttpResponseHandler;
 import com.chinessy.tutor.android.models.User;
+import com.chinessy.tutor.android.rtmp.LiveCameraActivity;
 import com.chinessy.tutor.android.utils.LogUtils;
 import com.google.gson.Gson;
 import com.rey.material.app.SimpleDialog;
@@ -120,8 +124,49 @@ public class HomeFragment extends Fragment {
     class BBtnOnLiveClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            startActivity(new Intent(getContext(), LiveRoomActivity.class));
+            // startActivity(new Intent(getContext(), LiveRoomActivity.class));
+            Request();
         }
+    }
+
+    private void Request() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstValue.BasicUrl + ConstValue.getPushUrl,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        LogUtils.d(ConstValue.getPushUrl + " :-->" + response.toString());
+                        liveBeans Beans = new Gson().fromJson(response.toString(), liveBeans.class);
+                        if ("true".equals(Beans.getStatus().toString())) {
+                            String rtmpUrl = Beans.getData();
+
+                            if (!TextUtils.isEmpty(rtmpUrl)) {
+                                //  showLiveFragment(rtmpUrl);
+                                LogUtils.d(ConstValue.getPushUrl + " :-->" + rtmpUrl);
+                                Intent intent = new Intent(getContext(), LiveCameraActivity.class);
+                                intent.putExtra("rtmpUrl", rtmpUrl);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        }
+                    }
+
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                LogUtils.d(ConstValue.getPushUrl + " :error-->" + error.toString());
+            }
+        }) {
+            @Override
+            protected Map getParams() {
+                //在这里设置需要post的参数
+                Map map = new HashMap();
+                map.put("roomId", "002");
+                return map;
+            }
+        };
+
+        Chinessy.requestQueue.add(stringRequest);
     }
 
     class BtnOnOfflineClickListener implements View.OnClickListener {

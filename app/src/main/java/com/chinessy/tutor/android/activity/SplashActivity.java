@@ -84,7 +84,7 @@ public class SplashActivity extends Activity {
         checkAutoLogin();
 
         if (Chinessy.chinessy.isLogined()) {
-            Chinessy.chinessy.getJusTalkHandler().login(new OnJusTalkLoginSucceed(), new OnJusTalkLoginFailed());
+         //   Chinessy.chinessy.getJusTalkHandler().login(new OnJusTalkLoginSucceed(), new OnJusTalkLoginFailed());
         } else {
             isJustTalkOK = true;
         }
@@ -101,7 +101,7 @@ public class SplashActivity extends Activity {
             endLoading();
         }
     }
-
+/*
     class OnJusTalkLoginFailed implements JusTalkHandler.IOnBroadCastReceived {
         @Override
         public void callBack() {
@@ -123,7 +123,7 @@ public class SplashActivity extends Activity {
             }
         }
     }
-
+*/
     private void endLoading() {
         if (isLoadTaskFinished && isTimeTaskFinished && isJustTalkOK) {
             if (mAutoLogin) {
