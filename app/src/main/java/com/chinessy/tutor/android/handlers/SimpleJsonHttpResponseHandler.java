@@ -9,6 +9,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.rey.material.app.SimpleDialog;
 
 import cz.msebera.android.httpclient.Header;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,9 +34,9 @@ public class SimpleJsonHttpResponseHandler extends JsonHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
         super.onFailure(statusCode, headers, throwable, errorResponse);
-        if(errorResponse != null){
+        if (errorResponse != null) {
             Log.w(tag, "failure, json object: " + errorResponse.toString());
-        }else{
+        } else {
             Log.w(tag, "failure, json object: " + null);
         }
 
@@ -61,8 +62,8 @@ public class SimpleJsonHttpResponseHandler extends JsonHttpResponseHandler {
         Log.w(tag, "success, string: " + responseString);
 
     }
-
-    public static void defaultHandler(Context context, String message){
+/*
+    public static void defaultHandler(Context context, String message) {
         final SimpleDialog promptDialog = new SimpleDialog(context);
         promptDialog.message(message);
         promptDialog.positiveAction(R.string.OK);
@@ -74,4 +75,5 @@ public class SimpleJsonHttpResponseHandler extends JsonHttpResponseHandler {
         });
         promptDialog.show();
     }
+    */
 }

@@ -340,7 +340,7 @@ public class User implements Serializable{
                                 syncStatusCallback.callback(status);
                                 break;
                             default:
-                                SimpleJsonHttpResponseHandler.defaultHandler(context, response.getString("message"));
+                          //      SimpleJsonHttpResponseHandler.defaultHandler(context, response.getString("message"));
                                 break;
                         }
                     } catch (JSONException e) {

@@ -57,6 +57,7 @@ import com.chinessy.tutor.android.activity.LiveRoomActivity;
 import com.chinessy.tutor.android.beans.liveBeans;
 import com.chinessy.tutor.android.clients.ConstValue;
 import com.google.gson.Gson;
+import com.rey.material.app.SimpleDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -279,7 +280,6 @@ public class LiveCameraActivity extends FragmentActivity {
 //        pushUrl = FileUtil.getSDCardPath()+ File.separator+sdf.format(new Date(System.currentTimeMillis()))+".flv";
         pushOn();
         initnteractionView();
-
 
     }
 

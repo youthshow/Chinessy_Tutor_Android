@@ -143,7 +143,7 @@ public class JusTalkHandler {
                                     MtcUe.Mtc_UePromptAuthCode(authCode);
                                     break;
                                 default:
-                                    SimpleJsonHttpResponseHandler.defaultHandler(mContext, response.getString("message"));
+                               //     SimpleJsonHttpResponseHandler.defaultHandler(mContext, response.getString("message"));
                                     break;
                             }
                         } catch (JSONException e) {

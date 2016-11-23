@@ -169,6 +169,8 @@ public class HomeFragment extends Fragment {
         Chinessy.requestQueue.add(stringRequest);
     }
 
+    SimpleDialog simpleDialog;
+
     class BtnOnOfflineClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
@@ -199,7 +201,8 @@ public class HomeFragment extends Fragment {
                 Chinessy.chinessy.getJusTalkHandler().login(null, null);
                 mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
             } else {
-                final SimpleDialog simpleDialog = new SimpleDialog(mActivity);
+
+                simpleDialog = new SimpleDialog(mActivity);
                 simpleDialog.message(R.string.user_status_invalid);
                 simpleDialog.positiveAction(R.string.OK);
                 simpleDialog.positiveActionClickListener(new View.OnClickListener() {
@@ -231,7 +234,7 @@ public class HomeFragment extends Fragment {
                                     mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
                                     break;
                                 default:
-                                    SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
+                             //       SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
                                     mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_FAILED);
                                     break;
                             }

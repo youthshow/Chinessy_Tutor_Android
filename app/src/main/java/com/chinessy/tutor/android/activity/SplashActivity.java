@@ -239,7 +239,7 @@ public class SplashActivity extends Activity {
 //                                Toast.makeText(mActivity, "app activited", Toast.LENGTH_SHORT).show();
                                 break;
                             default:
-                                SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
+                             //   SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
                                 break;
                         }
                     } catch (JSONException e) {

@@ -148,12 +148,15 @@ public class MyFragment extends Fragment {
         }
     }
 
+    SimpleDialog simpleDialog;
+
     class BtnLogoutClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
 
-            final SimpleDialog simpleDialog = new SimpleDialog(mActivity);
+
+            simpleDialog = new SimpleDialog(mActivity);
             simpleDialog.title(R.string.Logout);
             simpleDialog.message(R.string.dialog_logout_message);
             simpleDialog.positiveAction(R.string.OK);
@@ -279,7 +282,7 @@ public class MyFragment extends Fragment {
                                 mTvClosedCommissions.setText(user.getClosedCommissions() + getString(R.string.yuan));
                                 break;
                             default:
-                                SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
+                           //     SimpleJsonHttpResponseHandler.defaultHandler(mActivity, response.getString("message"));
                                 break;
                         }
                     } catch (JSONException e) {
