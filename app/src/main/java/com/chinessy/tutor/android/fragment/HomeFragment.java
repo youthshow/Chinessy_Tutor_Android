@@ -1,12 +1,14 @@
 package com.chinessy.tutor.android.fragment;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -169,7 +171,6 @@ public class HomeFragment extends Fragment {
         Chinessy.requestQueue.add(stringRequest);
     }
 
-    SimpleDialog simpleDialog;
 
     class BtnOnOfflineClickListener implements View.OnClickListener {
         @Override
@@ -201,7 +202,19 @@ public class HomeFragment extends Fragment {
                 Chinessy.chinessy.getJusTalkHandler().login(null, null);
                 mHandler.sendEmptyMessage(HomeFragment.HANDLER_STATUS_CHANGE_SUCCEED);
             } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());  //先得到构造器
+                builder.setMessage(R.string.user_status_invalid); //设置内容
+                builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() { //设置确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss(); //关闭dialog
 
+                    }
+                });
+
+            //参数都设置完成了，创建并显示出来
+                builder.create().show();
+/*
                 simpleDialog = new SimpleDialog(mActivity);
                 simpleDialog.message(R.string.user_status_invalid);
                 simpleDialog.positiveAction(R.string.OK);
@@ -212,6 +225,7 @@ public class HomeFragment extends Fragment {
                     }
                 });
                 simpleDialog.show();
+                */
                 return;
             }
             JSONObject jsonObject = new JSONObject();
