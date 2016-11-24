@@ -13,10 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.PermissionChecker;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -29,7 +26,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,17 +43,7 @@ import com.alibaba.livecloud.live.OnLiveRecordErrorListener;
 import com.alibaba.livecloud.live.OnNetworkStatusListener;
 import com.alibaba.livecloud.live.OnRecordStatusListener;
 import com.alibaba.livecloud.model.AlivcWatermark;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.chinessy.tutor.android.Chinessy;
 import com.chinessy.tutor.android.R;
-import com.chinessy.tutor.android.activity.LiveRoomActivity;
-import com.chinessy.tutor.android.beans.liveBeans;
-import com.chinessy.tutor.android.clients.ConstValue;
-import com.google.gson.Gson;
-import com.rey.material.app.SimpleDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,7 +58,7 @@ import java.util.Map;
  * date:2016/6/27
  * description:LiveCameraActivity
  */
-public class LiveCameraActivity extends FragmentActivity {
+public class LiveCameraActivity extends Activity {
     /*
         public static class RequestBuilder {
             String rtmpUrl;
@@ -204,6 +190,7 @@ public class LiveCameraActivity extends FragmentActivity {
     private AlivcMediaRecorder mMediaRecorder;
     private AlivcRecordReporter mRecordReporter;
 
+
     private Surface mPreviewSurface;
     private Map<String, Object> mConfigure = new HashMap<>();
     private boolean isRecording = false;
@@ -212,13 +199,15 @@ public class LiveCameraActivity extends FragmentActivity {
     private DataStatistics mDataStatistics = new DataStatistics(1000);
 
     /*
-    public static void startActivity(Context context,
-                                     RequestBuilder builder) {
-        Intent intent = builder.build(context);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
-    }
-*/
+        public static void startActivity(Context context,
+                                         RequestBuilder builder) {
+            Intent intent = builder.build(context);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        }
+    */
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -229,13 +218,10 @@ public class LiveCameraActivity extends FragmentActivity {
         } else {
             mHasPermission = true;
         }
-
         pushUrl = getIntent().getStringExtra("rtmpUrl");
-
-        //  getExtraData();
+        // getExtraData();
 
         initView();
-
 
         setRequestedOrientation(screenOrientation ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -251,7 +237,7 @@ public class LiveCameraActivity extends FragmentActivity {
         mMediaRecorder = AlivcMediaRecorderFactory.createMediaRecorder();
         mMediaRecorder.init(this);
         mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
-        // mDataStatistics.setReportListener(mReportListener);
+        mDataStatistics.setReportListener(mReportListener);
 
         /**
          * this method only can be called after mMediaRecorder.init(),
@@ -275,12 +261,10 @@ public class LiveCameraActivity extends FragmentActivity {
         mConfigure.put(AlivcMediaFormat.KEY_EXPOSURE_COMPENSATION, -1);//曝光度
         // mConfigure.put(AlivcMediaFormat.KEY_WATERMARK, mWatermark);
         mConfigure.put(AlivcMediaFormat.KEY_FRAME_RATE, frameRate);
-        //btn_switch_beauty.setChecked(false);
+        // btn_switch_beauty.setChecked(false);
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy_MM_dd_hh_mm_ss");
 //        pushUrl = FileUtil.getSDCardPath()+ File.separator+sdf.format(new Date(System.currentTimeMillis()))+".flv";
         pushOn();
-        initnteractionView();
-
     }
 
 
@@ -465,7 +449,7 @@ public class LiveCameraActivity extends FragmentActivity {
 //        toggle_camera.setOnCheckedChangeListener(_CameraOnCheckedChange);
 //        mTbtnMute = (ToggleButton) findViewById(R.id.btn_mute);
 //        mTbtnMute.setOnCheckedChangeListener(mMuteCheckedChange);
-
+//
 //        btn_switch_beauty = (ToggleButton) findViewById(R.id.btn_switch_beauty);
 //        btn_switch_beauty.setOnCheckedChangeListener(_SwitchBeautyOnCheckedChange);
 //
@@ -555,72 +539,71 @@ public class LiveCameraActivity extends FragmentActivity {
         mMediaRecorder.release();
     }
 
-    /*
-        private final CompoundButton.OnCheckedChangeListener _SwitchFlashLightOnCheckedChange =
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_FLASH_MODE_ON);
-                        } else {
-                            mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_FLASH_MODE_ON);
-                        }
+    private final CompoundButton.OnCheckedChangeListener _SwitchFlashLightOnCheckedChange =
+            new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_FLASH_MODE_ON);
+                    } else {
+                        mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_FLASH_MODE_ON);
                     }
-                };
+                }
+            };
 
-        private final CompoundButton.OnCheckedChangeListener _SwitchBeautyOnCheckedChange =
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
-                        } else {
-                            mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
-                        }
+    private final CompoundButton.OnCheckedChangeListener _SwitchBeautyOnCheckedChange =
+            new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
+                    } else {
+                        mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
                     }
-                };
+                }
+            };
 
-        private final CompoundButton.OnCheckedChangeListener _CameraOnCheckedChange =
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        int currFacing = mMediaRecorder.switchCamera();
-                        if (currFacing == AlivcMediaFormat.CAMERA_FACING_FRONT) {
-                            mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
-                        }
-                        mConfigure.put(AlivcMediaFormat.KEY_CAMERA_FACING, currFacing);
+    private final CompoundButton.OnCheckedChangeListener _CameraOnCheckedChange =
+            new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int currFacing = mMediaRecorder.switchCamera();
+                    if (currFacing == AlivcMediaFormat.CAMERA_FACING_FRONT) {
+                        mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_BEAUTY_ON);
                     }
-                };
-        private final CompoundButton.OnCheckedChangeListener mMuteCheckedChange =
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_MUTE_ON);
-                        } else {
-                            mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_MUTE_ON);
-                        }
+                    mConfigure.put(AlivcMediaFormat.KEY_CAMERA_FACING, currFacing);
+                }
+            };
+    private final CompoundButton.OnCheckedChangeListener mMuteCheckedChange =
+            new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        mMediaRecorder.addFlag(AlivcMediaFormat.FLAG_MUTE_ON);
+                    } else {
+                        mMediaRecorder.removeFlag(AlivcMediaFormat.FLAG_MUTE_ON);
                     }
-                };
+                }
+            };
 
-        private final CompoundButton.OnCheckedChangeListener _PushOnCheckedChange =
-                new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
-                            try {
-                                mMediaRecorder.startRecord(pushUrl);
-    //                            testPublish(true, pushUrl);
-                            } catch (Exception e) {
-                            }
-                            isRecording = true;
-                        } else {
-                            mMediaRecorder.stopRecord();
-                            isRecording = false;
+    private final CompoundButton.OnCheckedChangeListener _PushOnCheckedChange =
+            new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        try {
+                            mMediaRecorder.startRecord(pushUrl);
+//                            testPublish(true, pushUrl);
+                        } catch (Exception e) {
                         }
+                        isRecording = true;
+                    } else {
+                        mMediaRecorder.stopRecord();
+                        isRecording = false;
                     }
-                };
-    */
+                }
+            };
+
     public void testPublish(boolean isPublish, final String url) {
         if (isPublish) {
             mMediaRecorder.startRecord(url);
@@ -909,52 +892,52 @@ public class LiveCameraActivity extends FragmentActivity {
             }
         }
     };
-    /*
-        DataStatistics.ReportListener mReportListener = new DataStatistics.ReportListener() {
-            @Override
-            public void onInfoReport() {
-                runOnUiThread(mLoggerReportRunnable);
+
+    DataStatistics.ReportListener mReportListener = new DataStatistics.ReportListener() {
+        @Override
+        public void onInfoReport() {
+            runOnUiThread(mLoggerReportRunnable);
+        }
+    };
+
+    private Runnable mLoggerReportRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mRecordReporter != null) {
+                tv_video_capture_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_CAPTURE_FPS) + "fps");
+                tv_audio_encoder_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_ENCODER_FPS) + "fps");
+                tv_video_encoder_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_ENCODER_FPS) + "fps");
+
+                /**
+                 * OUTPUT_BITRATE的单位是byte / s，所以转换成bps需要要乘8
+                 */
+                tv_output_bitrate.setText(mRecordReporter.getLong(AlivcRecordReporter.OUTPUT_BITRATE) * 8 + "bps");
+
+                tv_av_output_diff.setText(mRecordReporter.getLong(AlivcRecordReporter.AV_OUTPUT_DIFF) + "microseconds");
+                tv_audio_out_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_OUTPUT_FPS) + "fps");
+                tv_video_output_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_OUTPUT_FPS) + "fps");
+//                tv_stream_publish_time = (TextView) findViewById(R.id.tv_video_capture_fps);
+//                tv_stream_server_ip = (TextView) findViewById(R.id.tv_video_capture_fps);
+                tv_video_delay_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_DELAY_DURATION) + "microseconds");
+                tv_audio_delay_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_DELAY_DURATION) + "microseconds");
+                tv_video_cache_frame_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_CACHE_FRAME_CNT) + "");
+                tv_audio_cache_frame_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_CACHE_FRAME_CNT) + "");
+                tv_video_cache_byte_size.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_CACHE_BYTE_SIZE) + "byte");
+                tv_audio_cache_byte_size.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_CACHE_BYTE_SIZE) + "byte");
+                tv_video_frame_discard_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_FRAME_DISCARD_CNT) + "");
+                tv_audio_frame_discard_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_FRAME_DISCARD_CNT) + "");
+                tv_cur_video_bueaty_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.CUR_VIDEO_BEAUTY_DURATION) + "ms");
+                tv_cur_video_encoder_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.CUR_VIDEO_ENCODER_DURATION) + "ms");
+                tv_cur_video_encode_birate.setText(mRecordReporter.getInt(AlivcRecordReporter.CUR_VIDEO_ENCODE_BITRATE) * 8 + "bps");
+
+                tv_video_output_frame_count.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_OUTPUT_FRAME_COUNT) + "");
+                tv_video_data.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_OUTPUT_DATA_SIZE) + "");
+                tv_video_buffer_count.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_BUFFER_COUNT) + "");
+                tv_audio_data.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_OUTPUT_DATA_SIZE) + "");
             }
-        };
+        }
+    };
 
-        private Runnable mLoggerReportRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (mRecordReporter != null) {
-                    tv_video_capture_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_CAPTURE_FPS) + "fps");
-                    tv_audio_encoder_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_ENCODER_FPS) + "fps");
-                    tv_video_encoder_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_ENCODER_FPS) + "fps");
-
-
-                    // * OUTPUT_BITRATE的单位是byte / s，所以转换成bps需要要乘8
-
-                    tv_output_bitrate.setText(mRecordReporter.getLong(AlivcRecordReporter.OUTPUT_BITRATE) * 8 + "bps");
-
-                    tv_av_output_diff.setText(mRecordReporter.getLong(AlivcRecordReporter.AV_OUTPUT_DIFF) + "microseconds");
-                    tv_audio_out_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_OUTPUT_FPS) + "fps");
-                    tv_video_output_fps.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_OUTPUT_FPS) + "fps");
-    //                tv_stream_publish_time = (TextView) findViewById(R.id.tv_video_capture_fps);
-    //                tv_stream_server_ip = (TextView) findViewById(R.id.tv_video_capture_fps);
-                    tv_video_delay_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_DELAY_DURATION) + "microseconds");
-                    tv_audio_delay_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_DELAY_DURATION) + "microseconds");
-                    tv_video_cache_frame_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_CACHE_FRAME_CNT) + "");
-                    tv_audio_cache_frame_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_CACHE_FRAME_CNT) + "");
-                    tv_video_cache_byte_size.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_CACHE_BYTE_SIZE) + "byte");
-                    tv_audio_cache_byte_size.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_CACHE_BYTE_SIZE) + "byte");
-                    tv_video_frame_discard_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_FRAME_DISCARD_CNT) + "");
-                    tv_audio_frame_discard_cnt.setText(mRecordReporter.getInt(AlivcRecordReporter.AUDIO_FRAME_DISCARD_CNT) + "");
-                    tv_cur_video_bueaty_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.CUR_VIDEO_BEAUTY_DURATION) + "ms");
-                    tv_cur_video_encoder_duration.setText(mRecordReporter.getLong(AlivcRecordReporter.CUR_VIDEO_ENCODER_DURATION) + "ms");
-                    tv_cur_video_encode_birate.setText(mRecordReporter.getInt(AlivcRecordReporter.CUR_VIDEO_ENCODE_BITRATE) * 8 + "bps");
-
-                    tv_video_output_frame_count.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_OUTPUT_FRAME_COUNT) + "");
-                    tv_video_data.setText(mRecordReporter.getLong(AlivcRecordReporter.VIDEO_OUTPUT_DATA_SIZE) + "");
-                    tv_video_buffer_count.setText(mRecordReporter.getInt(AlivcRecordReporter.VIDEO_BUFFER_COUNT) + "");
-                    tv_audio_data.setText(mRecordReporter.getLong(AlivcRecordReporter.AUDIO_OUTPUT_DATA_SIZE) + "");
-                }
-            }
-        };
-    */
     private AlivcEventResponse mBitrateUpRes = new AlivcEventResponse() {
         @Override
         public void onEvent(AlivcEvent event) {

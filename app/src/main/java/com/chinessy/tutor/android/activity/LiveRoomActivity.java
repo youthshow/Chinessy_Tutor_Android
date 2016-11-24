@@ -137,7 +137,7 @@ public class LiveRoomActivity extends AppCompatActivity {
 
                             if (!TextUtils.isEmpty(rtmpUrl)) {
                                 //  showLiveFragment(rtmpUrl);
-
+                                rtmpUrl = "rtmp://video-center.alivecdn.com/AppName/StreamName?vhost=www.hooctv.com&auth_key=1479957855-0-0-efbadd98c26bcf4ec6005fd8575712f3";
                                 Intent intent = new Intent(LiveRoomActivity.this, LiveCameraActivity.class);
                                 intent.putExtra("rtmpUrl", rtmpUrl);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
