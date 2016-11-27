@@ -765,7 +765,6 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onIllegalOutputResolution() {
             Log.d(TAG, "selected illegal output resolution");
-            ToastUtils.showToast(LiveCameraActivity.this, R.string.illegal_output_resolution);
         }
     };
 
@@ -774,12 +773,10 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onNetworkBusy() {
             Log.d("network_status", "==== on network busy ====");
-            ToastUtils.showToast(LiveCameraActivity.this, "当前网络状态极差，已无法正常流畅直播，确认要继续直播吗？");
         }
 
         @Override
         public void onNetworkFree() {
-            ToastUtils.showToast(LiveCameraActivity.this, "network free");
             Log.d("network_status", "===== on network free ====");
         }
 
@@ -789,17 +786,14 @@ public class LiveCameraActivity extends Activity {
 
             switch (status) {
                 case AlivcStatusCode.STATUS_CONNECTION_START:
-                    ToastUtils.showToast(LiveCameraActivity.this, "Start live stream connection!");
                     Log.d(TAG, "Start live stream connection!");
                     break;
                 case AlivcStatusCode.STATUS_CONNECTION_ESTABLISHED:
                     Log.d(TAG, "Live stream connection is established!");
 //                    showIllegalArgumentDialog("链接成功");
-                    ToastUtils.showToast(LiveCameraActivity.this, "Live stream connection is established!");
                     break;
                 case AlivcStatusCode.STATUS_CONNECTION_CLOSED:
                     Log.d(TAG, "Live stream connection is closed!");
-                    ToastUtils.showToast(LiveCameraActivity.this, "Live stream connection is closed!");
 //                    mLiveRecorder.stop();
 //                    mLiveRecorder.release();
 //                    mLiveRecorder = null;
@@ -817,7 +811,6 @@ public class LiveCameraActivity extends Activity {
         @Override
         public boolean onNetworkReconnectFailed() {
             Log.d(TAG, "Reconnect timeout, not adapt to living");
-            ToastUtils.showToast(LiveCameraActivity.this, "长时间重连失败，已不适合直播，请退出");
             mMediaRecorder.stopRecord();
             showIllegalArgumentDialog("网络重连失败");
             return false;
@@ -839,7 +832,6 @@ public class LiveCameraActivity extends Activity {
                             toastTip = R.string.no_record_audio_permission;
                         }
                         if (toastTip != 0) {
-                            ToastUtils.showToast(this, toastTip);
                             hasPermission = false;
                         }
                     }
@@ -884,7 +876,6 @@ public class LiveCameraActivity extends Activity {
                 case AlivcStatusCode.ERROR_BROKEN_PIPE:
                 case AlivcStatusCode.ERROR_IO:
                 case AlivcStatusCode.ERROR_NETWORK_UNREACHABLE:
-                    ToastUtils.showToast(LiveCameraActivity.this, "Live stream connection error-->" + errorCode);
 
                     break;
 
@@ -946,8 +937,6 @@ public class LiveCameraActivity extends Activity {
             int currBitrate = bundle.getInt(AlivcEvent.EventBundleKey.KEY_CURR_BITRATE);
             Log.d(TAG, "event->up bitrate, previous bitrate is " + preBitrate +
                     "current bitrate is " + currBitrate);
-            ToastUtils.showToast(LiveCameraActivity.this, "event->up bitrate, previous bitrate is " + preBitrate +
-                    "current bitrate is " + currBitrate);
         }
     };
     private AlivcEventResponse mBitrateDownRes = new AlivcEventResponse() {
@@ -958,15 +947,12 @@ public class LiveCameraActivity extends Activity {
             int currBitrate = bundle.getInt(AlivcEvent.EventBundleKey.KEY_CURR_BITRATE);
             Log.d(TAG, "event->down bitrate, previous bitrate is " + preBitrate +
                     "current bitrate is " + currBitrate);
-            ToastUtils.showToast(LiveCameraActivity.this, "event->down bitrate, previous bitrate is " + preBitrate +
-                    "current bitrate is " + currBitrate);
         }
     };
     private AlivcEventResponse mAudioCaptureSuccRes = new AlivcEventResponse() {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event->audio recorder start success");
-            ToastUtils.showToast(LiveCameraActivity.this, "event->audio recorder start success");
         }
     };
 
@@ -974,21 +960,18 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event->video encoder start success");
-            ToastUtils.showToast(LiveCameraActivity.this, "event->video encoder start success");
         }
     };
     private AlivcEventResponse mVideoEncoderFailedRes = new AlivcEventResponse() {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event->video encoder start failed");
-            ToastUtils.showToast(LiveCameraActivity.this, "event->video encoder start failed");
         }
     };
     private AlivcEventResponse mVideoEncodeFrameFailedRes = new AlivcEventResponse() {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event->video encode frame failed");
-            ToastUtils.showToast(LiveCameraActivity.this, "event->video encode frame failed");
         }
     };
 
@@ -997,7 +980,6 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event->live recorder initialize completely");
-            ToastUtils.showToast(LiveCameraActivity.this, "event->live recorder initialize completely");
         }
     };
 
@@ -1010,7 +992,6 @@ public class LiveCameraActivity extends Activity {
                 discardFrames = bundle.getInt(AlivcEvent.EventBundleKey.KEY_DISCARD_FRAMES);
             }
             Log.d(TAG, "event->data discard, the frames num is " + discardFrames);
-            ToastUtils.showToast(LiveCameraActivity.this, "event->data discard, the frames num is " + discardFrames);
         }
     };
 
@@ -1018,7 +999,6 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event-> audio capture device open failed");
-            ToastUtils.showToast(LiveCameraActivity.this, "event-> audio capture device open failed");
         }
     };
 
@@ -1026,7 +1006,6 @@ public class LiveCameraActivity extends Activity {
         @Override
         public void onEvent(AlivcEvent event) {
             Log.d(TAG, "event-> audio encode frame failed");
-            ToastUtils.showToast(LiveCameraActivity.this, "event-> audio encode frame failed");
         }
     };
 }

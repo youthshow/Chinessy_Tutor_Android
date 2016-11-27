@@ -32,5 +32,10 @@
         <!--<item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>-->
     </style>
 
+    <style name="setting_popwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/setting_panel_show_animation</item>
+        <item name="android:windowExitAnimation">@anim/setting_panel_hide_animation</item>
+    </style>
+
 
 </resources>
